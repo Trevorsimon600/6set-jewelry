@@ -1,0 +1,389 @@
+/* =================================
+   6SET JEWELRY
+   FOOTER
+================================= */
+
+.site-footer {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding: 28px 7%;
+
+  box-sizing: border-box;
+
+  background: #2e2135;
+
+  color: #eee5f1;
+}
+
+
+/* =================================
+   FOOTER LOGO
+================================= */
+
+.footer-logo {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.footer-logo img {
+  width: 48px;
+  height: 48px;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 2px solid #ead5ec;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =================================
+   COPYRIGHT
+================================= */
+
+.footer-copyright {
+  margin: 0;
+
+  color: #eee5f1;
+
+  font-size: 0.85rem;
+
+  text-align: center;
+}
+
+
+/* =================================
+   MADE WITH LOVE
+================================= */
+
+.made-with-love {
+  margin: 0;
+
+  color: #f0bce8;
+
+  font-size: 0.88rem;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+  .site-footer {
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 32px 6%;
+
+    gap: 13px;
+
+    text-align: center;
+  }
+
+  .footer-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer-logo img {
+    width: 46px;
+    height: 46px;
+  }
+
+}
+
+
+/* =================================
+   SMALL PHONES
+================================= */
+
+@media (max-width: 400px) {
+
+  .footer-copyright {
+    font-size: 0.78rem;
+  }
+
+  .made-with-love {
+    font-size: 0.82rem;
+  }
+
+}
+
+/* =================================
+   6SET JEWELRY
+   FOOTER
+================================= */
+
+.site-footer {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding: 28px 7%;
+
+  box-sizing: border-box;
+
+  background: #2e2135;
+
+  color: #eee5f1;
+}
+
+
+/* =================================
+   FOOTER LOGO
+================================= */
+
+.footer-logo {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.footer-logo img {
+  width: 48px;
+  height: 48px;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 2px solid #ead5ec;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =================================
+   SHOP NAME
+================================= */
+
+.footer-shop-name {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =================================
+   SOCIAL MEDIA
+================================= */
+
+.footer-social {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin: 0;
+}
+
+
+/* =================================
+   SOCIAL ICON BUTTON
+================================= */
+
+.footer-social-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border-radius: 50%;
+
+  color: #eee5f1;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* =================================
+   SVG ICON
+================================= */
+
+.footer-social-icon svg {
+  width: 20px;
+  height: 20px;
+
+  display: block;
+}
+
+
+/* =================================
+   HOVER
+================================= */
+
+.footer-social-icon:hover {
+  transform: translateY(-3px);
+
+  color: #ffffff;
+
+  background: #8f5aa8;
+
+  border-color: #c78edc;
+}
+
+
+/* =================================
+   FOCUS
+================================= */
+
+.footer-social-icon:focus-visible {
+  outline: 2px solid #f0bce8;
+
+  outline-offset: 3px;
+}
+
+
+/* =================================
+   COPYRIGHT
+================================= */
+
+.footer-copyright {
+  margin: 0;
+
+  color: #eee5f1;
+
+  font-size: 0.85rem;
+
+  text-align: center;
+}
+
+
+/* =================================
+   MADE WITH LOVE
+================================= */
+
+.made-with-love {
+  margin: 0;
+
+  color: #f0bce8;
+
+  font-size: 0.88rem;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+  .site-footer {
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 32px 6%;
+
+    gap: 13px;
+
+    text-align: center;
+  }
+
+
+  .footer-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+
+  .footer-logo img {
+    width: 46px;
+    height: 46px;
+  }
+
+
+  .footer-social {
+    margin: 5px 0;
+  }
+
+
+  .footer-social-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+}
+
+
+/* =================================
+   SMALL PHONES
+================================= */
+
+@media (max-width: 400px) {
+
+  .footer-copyright {
+    font-size: 0.78rem;
+  }
+
+
+  .made-with-love {
+    font-size: 0.82rem;
+  }
+
+}

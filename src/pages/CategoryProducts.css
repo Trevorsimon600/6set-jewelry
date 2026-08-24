@@ -1,0 +1,769 @@
+/* =================================
+   6SET JEWELRY
+   CATEGORY PRODUCTS
+================================= */
+
+.category-products-page {
+  min-height: 100vh;
+
+  background: #fffaff;
+
+  color: #30243a;
+}
+
+
+/* =================================
+   HERO
+================================= */
+
+.category-products-hero {
+  padding: 55px 7% 80px;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      #ead8f5 0,
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fff8fd,
+      #f7efff
+    );
+}
+
+
+/* =================================
+   BACK LINK
+================================= */
+
+.back-link {
+  display: inline-block;
+
+  margin-bottom: 40px;
+
+  color: #8d4388;
+
+  text-decoration: none;
+
+  font-weight: 700;
+}
+
+.back-link:hover {
+  color: #713b7f;
+}
+
+
+/* =================================
+   HERO TEXT
+================================= */
+
+.category-products-hero h1 {
+  margin: 0 0 18px;
+
+  color: #33243d;
+
+  font-size: clamp(
+    3rem,
+    7vw,
+    5.5rem
+  );
+
+  line-height: 1;
+}
+
+.category-products-hero p:last-child {
+  max-width: 600px;
+
+  margin: auto;
+
+  color: #6c5a73;
+
+  font-size: 1.05rem;
+
+  line-height: 1.7;
+}
+
+
+/* =================================
+   PRODUCTS SECTION
+================================= */
+
+.category-products-section {
+  padding: 80px 7%;
+}
+
+
+/* =================================
+   HEADING
+================================= */
+
+.category-products-heading {
+  max-width: 1200px;
+
+  margin: 0 auto 40px;
+
+  display: flex;
+
+  align-items: end;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.category-products-heading h2 {
+  margin: 0;
+
+  color: #38263f;
+
+  font-size: clamp(
+    2rem,
+    4vw,
+    3rem
+  );
+}
+
+.product-count {
+  margin: 0;
+
+  color: #765f7d;
+
+  font-weight: 600;
+}
+
+
+/* =================================
+   PRODUCT GRID
+================================= */
+
+.category-products-grid {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+
+/* =================================
+   PRODUCT CARD
+================================= */
+
+.category-product-card {
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+
+  border:
+    1px solid #ead9ee;
+
+  border-radius: 24px;
+
+  background: white;
+
+  box-shadow:
+    0 10px 30px
+    rgba(70, 40, 80, 0.06);
+
+  transition: 0.25s ease;
+}
+
+.category-product-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 18px 40px
+    rgba(70, 40, 80, 0.12);
+}
+
+
+/* =================================
+   PRODUCT IMAGE
+================================= */
+
+.category-product-image {
+  height: 310px;
+
+  overflow: hidden;
+
+  background: #f8effb;
+}
+
+.category-product-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.4s ease;
+}
+
+.category-product-card:hover
+.category-product-image img {
+  transform: scale(1.04);
+}
+
+
+/* =================================
+   PRODUCT INFO
+================================= */
+
+.category-product-info {
+  padding: 25px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+}
+
+.product-category {
+  margin: 0 0 8px;
+
+  color: #9a4f9b;
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.category-product-info h3 {
+  margin: 0 0 12px;
+
+  color: #38263f;
+
+  font-size: 1.35rem;
+}
+
+.product-description {
+  margin: 0 0 18px;
+
+  color: #6e5b75;
+
+  line-height: 1.6;
+
+  font-size: 0.95rem;
+}
+
+
+/* =================================
+   PRICE
+================================= */
+
+.product-price {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #8d4388;
+
+  font-size: 1.35rem;
+}
+
+.unit-price {
+  margin: 0 0 18px;
+
+  color: #78667d;
+
+  font-size: 0.82rem;
+}
+
+
+/* =================================
+   QUANTITY
+================================= */
+
+.quantity-area {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: auto;
+
+  padding-top: 15px;
+}
+
+.quantity-area > span {
+  color: #5d4b64;
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+}
+
+.quantity-selector {
+  display: inline-flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  border:
+    1px solid #dec9e2;
+
+  border-radius: 999px;
+
+  background: #fffaff;
+}
+
+.quantity-selector button {
+  width: 40px;
+
+  height: 40px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #713b7f;
+
+  font-size: 1.3rem;
+
+  cursor: pointer;
+}
+
+.quantity-selector button:hover:not(:disabled) {
+  background: #f3e4f6;
+}
+
+.quantity-selector button:disabled {
+  color: #c8bdca;
+
+  cursor: not-allowed;
+}
+
+.quantity-selector span {
+  min-width: 38px;
+
+  text-align: center;
+
+  color: #3f3046;
+
+  font-weight: 700;
+}
+
+
+/* =================================
+   QUANTITY LIMIT
+================================= */
+
+.quantity-limit {
+  margin: 10px 0 18px;
+
+  color: #88758d;
+
+  font-size: 0.78rem;
+}
+
+
+/* =================================
+   ADD TO CART
+================================= */
+
+.add-cart-button {
+  width: 100%;
+
+  padding: 13px 18px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #9b4d99;
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.add-cart-button:hover {
+  background: #773b76;
+
+  transform: translateY(-1px);
+}
+
+
+/* =================================
+   BOTTOM
+================================= */
+
+.category-bottom {
+  margin: 70px auto 0;
+
+  text-align: center;
+}
+
+.category-bottom p {
+  margin-bottom: 18px;
+
+  color: #6e5b75;
+}
+
+.view-all-button {
+  display: inline-block;
+
+  padding: 13px 25px;
+
+  border:
+    1px solid #a6539e;
+
+  border-radius: 999px;
+
+  color: #8d4388;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.view-all-button:hover {
+  background: #a6539e;
+
+  color: white;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 950px) {
+
+  .category-products-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 650px) {
+
+  .category-products-hero {
+    padding:
+      40px 6% 60px;
+  }
+
+  .category-products-section {
+    padding:
+      55px 5%;
+  }
+
+  .category-products-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .category-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-product-image {
+    height: 280px;
+  }
+
+}
+
+/* =========================================================
+   6SET JEWELRY
+   CATEGORY PRODUCTS PAGES
+   EARRINGS / NECKLACES / BRACELETS / RINGS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   MAIN CATEGORY PRODUCTS PAGE
+   --------------------------------------------------------- */
+
+.category-products-page {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   CATEGORY HERO
+   --------------------------------------------------------- */
+
+.category-products-hero {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 70px 24px 50px;
+
+  margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   BACK BUTTON
+   Keep this independent from the title.
+   --------------------------------------------------------- */
+
+.category-products-hero .back-link {
+  align-self: flex-start;
+
+  margin-bottom: 30px;
+
+  text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   SMALL "6SET JEWELRY" LABEL
+   --------------------------------------------------------- */
+
+.category-products-hero .small-heading {
+  width: 100%;
+
+  margin: 0 0 12px;
+
+  text-align: center !important;
+}
+
+
+/* ---------------------------------------------------------
+   CATEGORY TITLE
+   THIS IS THE IMPORTANT PART
+   --------------------------------------------------------- */
+
+.category-products-hero h1 {
+  display: block;
+
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 0;
+
+  text-align: center !important;
+
+  align-self: center;
+
+  box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   CATEGORY DESCRIPTION
+   --------------------------------------------------------- */
+
+.category-products-hero > p:not(.small-heading) {
+  display: block;
+
+  width: 100%;
+  max-width: 680px;
+
+  margin: 16px auto 0;
+
+  text-align: center !important;
+
+  align-self: center;
+
+  box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   PRODUCTS SECTION
+   DO NOT CENTER THE PRODUCT GRID
+   --------------------------------------------------------- */
+
+.category-products-section {
+  width: 100%;
+  box-sizing: border-box;
+
+  text-align: left;
+
+  margin: 0;
+}
+
+
+/* ---------------------------------------------------------
+   PRODUCTS HEADER
+   --------------------------------------------------------- */
+
+.category-products-heading {
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  text-align: left;
+
+  box-sizing: border-box;
+}
+
+
+/* Heading inside products section */
+
+.category-products-heading h2 {
+  text-align: left;
+}
+
+
+/* Product count */
+
+.category-products-heading > p {
+  text-align: right;
+}
+
+
+/* ---------------------------------------------------------
+   PRODUCT GRID
+   IMPORTANT:
+   This keeps the actual products in their original layout.
+   --------------------------------------------------------- */
+
+.category-products-grid {
+  width: 100%;
+
+  display: grid;
+
+  box-sizing: border-box;
+
+  text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   PRODUCT CARDS
+   --------------------------------------------------------- */
+
+.category-product-card {
+  text-align: left;
+}
+
+
+/* Product image */
+
+.category-product-image {
+  text-align: center;
+}
+
+
+/* Product information */
+
+.category-product-info {
+  text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   PRODUCT TITLES
+   --------------------------------------------------------- */
+
+.category-product-card h3 {
+  text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   PRODUCT PRICE
+   --------------------------------------------------------- */
+
+.category-product-price {
+  text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY CATEGORY
+   --------------------------------------------------------- */
+
+.category-empty {
+  text-align: center;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 640px) {
+
+  .category-products-hero {
+    padding: 50px 18px 40px;
+  }
+
+  .category-products-hero .back-link {
+    align-self: flex-start;
+
+    margin-bottom: 24px;
+  }
+
+  .category-products-hero h1 {
+    width: 100%;
+    max-width: 100%;
+
+    text-align: center !important;
+  }
+
+  .category-products-hero > p:not(.small-heading) {
+    width: 100%;
+    max-width: 100%;
+
+    text-align: center !important;
+  }
+
+  .category-products-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .category-products-heading h2 {
+    text-align: left;
+  }
+
+  .category-products-heading > p {
+    text-align: left;
+  }
+}

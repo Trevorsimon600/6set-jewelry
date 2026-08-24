@@ -1,0 +1,433 @@
+/* =================================
+   6SET JEWELRY — SHOP PAGE
+================================= */
+
+.shop-page {
+  min-height: 100vh;
+  background: #fffaff;
+  color: #30243a;
+}
+
+
+/* =================================
+   SHOP HERO
+================================= */
+
+.shop-hero {
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 80px 8%;
+
+  background:
+    radial-gradient(
+      circle at 80% 30%,
+      #ead9f5 0,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #fff8fd,
+      #f6edff
+    );
+}
+
+.shop-hero-content {
+  max-width: 650px;
+}
+
+.shop-hero h1 {
+  margin: 0;
+
+  color: #33243d;
+
+  font-size: clamp(3rem, 7vw, 6rem);
+
+  line-height: 0.95;
+
+  letter-spacing: -3px;
+}
+
+.shop-hero h1 span {
+  color: #a8509d;
+}
+
+.shop-hero p:not(.small-heading) {
+  max-width: 550px;
+
+  margin: 28px 0;
+
+  color: #6c5a73;
+
+  font-size: 1.08rem;
+
+  line-height: 1.8;
+}
+
+.shop-hero-button {
+  display: inline-block;
+
+  padding: 15px 28px;
+
+  border-radius: 999px;
+
+  background: #9b4d99;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: 0.25s ease;
+}
+
+.shop-hero-button:hover {
+  background: #773b76;
+
+  transform: translateY(-2px);
+}
+
+
+/* =================================
+   SECTION HEADINGS
+================================= */
+
+.shop-section-heading {
+  text-align: center;
+
+  margin-bottom: 45px;
+}
+
+.shop-section-heading h2 {
+  margin: 0 0 12px;
+
+  color: #38263f;
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.shop-section-heading p:not(.small-heading) {
+  color: #6e5b75;
+
+  line-height: 1.7;
+}
+
+
+/* =================================
+   FEATURED PRODUCTS
+================================= */
+
+.shop-featured {
+  padding: 90px 7%;
+
+  background: white;
+}
+
+.shop-product-grid {
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 22px;
+}
+
+.shop-product-card {
+  overflow: hidden;
+
+  border: 1px solid #ead9ee;
+
+  border-radius: 22px;
+
+  background: white;
+
+  box-shadow:
+    0 8px 25px rgba(70, 40, 80, 0.06);
+
+  transition: 0.25s ease;
+}
+
+.shop-product-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 18px 35px rgba(70, 40, 80, 0.12);
+}
+
+.shop-product-image {
+  height: 260px;
+
+  overflow: hidden;
+
+  background: #f8effb;
+}
+
+.shop-product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.3s ease;
+}
+
+.shop-product-card:hover
+.shop-product-image img {
+  transform: scale(1.04);
+}
+
+.shop-product-info {
+  padding: 22px;
+}
+
+.product-category {
+  margin-bottom: 7px;
+
+  color: #9a4f9b;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.shop-product-info h3 {
+  margin: 0 0 14px;
+
+  color: #392743;
+
+  font-size: 1.1rem;
+}
+
+.shop-product-info strong {
+  display: block;
+
+  margin-bottom: 18px;
+
+  color: #8d4388;
+
+  font-size: 1.05rem;
+}
+
+.shop-product-link {
+  color: #8d4388;
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+}
+
+.shop-product-link:hover {
+  text-decoration: underline;
+}
+
+
+/* =================================
+   SHOP CATEGORIES
+================================= */
+
+.shop-categories {
+  padding: 90px 7%;
+
+  background: #f8effb;
+}
+
+.shop-category-grid {
+  max-width: 1200px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.shop-category-card {
+  position: relative;
+
+  height: 330px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  text-decoration: none;
+
+  background: #eee0f2;
+
+  box-shadow:
+    0 10px 30px rgba(70, 40, 80, 0.08);
+}
+
+.shop-category-card img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.35s ease;
+}
+
+.shop-category-card:hover img {
+  transform: scale(1.06);
+}
+
+.shop-category-overlay {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 24px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(35, 20, 40, 0.85)
+    );
+}
+
+.shop-category-overlay span {
+  font-size: 1.4rem;
+
+  font-weight: 700;
+}
+
+.shop-category-overlay small {
+  font-size: 0.85rem;
+
+  opacity: 0.9;
+}
+
+
+/* =================================
+   ALL PRODUCTS CTA
+================================= */
+
+.shop-all-products {
+  padding: 100px 8%;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eee0fa,
+      #fbe8f6,
+      #e5f2fc
+    );
+}
+
+.shop-all-products h2 {
+  margin: 0 0 15px;
+
+  color: #392743;
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.shop-all-products p:not(.small-heading) {
+  max-width: 650px;
+
+  margin: 0 auto 30px;
+
+  color: #65556c;
+
+  line-height: 1.8;
+}
+
+.shop-all-button {
+  display: inline-block;
+
+  padding: 14px 28px;
+
+  border-radius: 999px;
+
+  background: #8f4b9d;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.shop-all-button:hover {
+  background: #713b7f;
+
+  transform: translateY(-2px);
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 900px) {
+
+  .shop-product-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .shop-category-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .shop-hero {
+    min-height: 430px;
+
+    padding: 60px 7%;
+
+    text-align: center;
+  }
+
+  .shop-hero-content {
+    margin: auto;
+  }
+
+  .shop-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-product-image {
+    height: 300px;
+  }
+
+}

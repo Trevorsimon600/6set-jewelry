@@ -1,0 +1,386 @@
+/* =================================
+   6SET JEWELRY
+   STORE CLOSED SCREEN
+================================= */
+
+.store-closed-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 40px 20px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8f0fa 0%,
+      #fdf8fc 45%,
+      #eef6fc 100%
+    );
+
+  color: #2e2135;
+}
+
+
+/* =================================
+   DECORATIVE GLOWS
+================================= */
+
+.store-closed-glow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  opacity: 0.35;
+
+  pointer-events: none;
+}
+
+.glow-one {
+  top: -180px;
+  left: -120px;
+
+  background: #e8a9dc;
+}
+
+.glow-two {
+  bottom: -200px;
+  right: -120px;
+
+  background: #a9d8ee;
+}
+
+
+/* =================================
+   MAIN CARD
+================================= */
+
+.store-closed-card {
+  width: 100%;
+  max-width: 650px;
+
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+
+  padding: 55px 45px;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.86);
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 70px rgba(46, 33, 53, 0.12);
+
+  backdrop-filter: blur(12px);
+}
+
+
+/* =================================
+   LOGO
+================================= */
+
+.store-closed-logo {
+  width: 92px;
+  height: 92px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 24px;
+
+  text-decoration: none;
+}
+
+.store-closed-logo img {
+  width: 88px;
+  height: 88px;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 3px solid #ead5ec;
+
+  box-shadow:
+    0 10px 28px rgba(46, 33, 53, 0.15);
+}
+
+
+/* =================================
+   STATUS
+================================= */
+
+.store-closed-status {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 8px 15px;
+
+  border-radius: 999px;
+
+  background: #f7edf7;
+
+  color: #805276;
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+.store-closed-status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #b46b9e;
+
+  box-shadow:
+    0 0 0 4px rgba(180, 107, 158, 0.12);
+}
+
+
+/* =================================
+   SHOP NAME
+================================= */
+
+.store-closed-shop-name {
+  margin: 25px 0 10px;
+
+  color: #9a6791;
+
+  font-size: 0.82rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+}
+
+
+/* =================================
+   TITLE
+================================= */
+
+.store-closed-card h1 {
+  margin: 0;
+
+  color: #2e2135;
+
+  font-size: clamp(2.4rem, 6vw, 4rem);
+
+  line-height: 1.05;
+
+  font-weight: 700;
+}
+
+
+/* =================================
+   MESSAGE
+================================= */
+
+.store-closed-message {
+  max-width: 520px;
+
+  margin: 22px auto 0;
+
+  color: #675b6b;
+
+  font-size: 1.05rem;
+
+  line-height: 1.7;
+}
+
+
+/* =================================
+   CONTACT
+================================= */
+
+.store-closed-contact {
+  margin-top: 32px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid #eee4ef;
+}
+
+.store-closed-contact p {
+  margin: 0 0 17px;
+
+  color: #6c6170;
+
+  font-size: 0.92rem;
+}
+
+
+/* =================================
+   BUTTONS
+================================= */
+
+.store-closed-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.store-closed-buttons a {
+  min-width: 150px;
+
+  padding: 12px 20px;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.store-closed-buttons a:hover {
+  transform: translateY(-2px);
+}
+
+
+/* WHATSAPP */
+
+.store-closed-whatsapp {
+  background: #2e2135;
+
+  color: white;
+
+  box-shadow:
+    0 8px 20px rgba(46, 33, 53, 0.18);
+}
+
+
+/* CALL */
+
+.store-closed-call {
+  background: #f4e6f4;
+
+  color: #684463;
+
+  border: 1px solid #e4cfe3;
+}
+
+
+/* =================================
+   HOME BUTTON
+================================= */
+
+.store-closed-home {
+  display: inline-block;
+
+  margin-top: 25px;
+
+  color: #8a5b82;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.store-closed-home:hover {
+  text-decoration: underline;
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+.store-closed-footer {
+  margin: 35px 0 0;
+
+  color: #a092a5;
+
+  font-size: 0.78rem;
+}
+
+.store-closed-footer span {
+  margin: 0 4px;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+  .store-closed-page {
+    padding: 20px 15px;
+  }
+
+  .store-closed-card {
+    padding: 40px 22px;
+
+    border-radius: 22px;
+  }
+
+  .store-closed-logo {
+    width: 78px;
+    height: 78px;
+  }
+
+  .store-closed-logo img {
+    width: 74px;
+    height: 74px;
+  }
+
+  .store-closed-card h1 {
+    font-size: 2.35rem;
+  }
+
+  .store-closed-message {
+    font-size: 0.95rem;
+  }
+
+  .store-closed-buttons {
+    flex-direction: column;
+  }
+
+  .store-closed-buttons a {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
