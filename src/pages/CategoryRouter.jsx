@@ -1,116 +1,23 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-
-import {
-  fetchStorefrontCategories,
-} from '../lib/catalogService'
-
-import Earrings from './Earrings'
-import Necklaces from './Necklaces'
-import Bracelets from './Bracelets'
-import Rings from './Rings'
 import CategoryPage from './CategoryPage'
 
+// ============================================================
+// CATEGORY ROUTER
+// ============================================================
+//
+// Every category — earrings, necklaces, bracelets, rings, and
+// anything added later from the admin — goes through the same
+// generic CategoryPage. It looks up the category by slug itself
+// (via useParams) and already handles "not found" on its own,
+// so there's nothing left for this component to decide.
+//
+// Kept as its own file/route target rather than pointing
+// App.jsx straight at CategoryPage, in case a real per-category
+// special case ever comes up again later.
+//
+// ============================================================
+
 function CategoryRouter() {
-  const { categorySlug } = useParams()
-
-  const [category, setCategory] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    let mounted = true
-
-    async function loadCategory() {
-      try {
-        setLoading(true)
-
-        const categories =
-          await fetchStorefrontCategories()
-
-        if (!mounted) {
-          return
-        }
-
-        const normalizedSlug =
-          categorySlug
-            ?.trim()
-            .toLowerCase()
-
-        const foundCategory =
-          categories.find(
-            (item) =>
-              item.slug
-                ?.trim()
-                .toLowerCase() ===
-              normalizedSlug
-          )
-
-        setCategory(
-          foundCategory || null
-        )
-      } catch (error) {
-        console.error(
-          'Failed to load category:',
-          error
-        )
-
-        if (mounted) {
-          setCategory(null)
-        }
-      } finally {
-        if (mounted) {
-          setLoading(false)
-        }
-      }
-    }
-
-    loadCategory()
-
-    return () => {
-      mounted = false
-    }
-  }, [categorySlug])
-
-  if (loading) {
-    return (
-      <div
-        style={{
-          minHeight: '50vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        Loading category...
-      </div>
-    )
-  }
-
-  if (!category) {
-    return <CategoryPage />
-  }
-
-  const slug =
-    category.slug
-      ?.trim()
-      .toLowerCase()
-
-  switch (slug) {
-    case 'earrings':
-      return <Earrings />
-
-    case 'necklaces':
-      return <Necklaces />
-
-    case 'bracelets':
-      return <Bracelets />
-
-    case 'rings':
-      return <Rings />
-
-    default:
-      return <CategoryPage />
-  }
+  return <CategoryPage />
 }
 
 export default CategoryRouter

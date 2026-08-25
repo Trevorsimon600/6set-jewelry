@@ -837,24 +837,64 @@ export async function deleteCategory(
 }
 
 // ============================================================
-// ADD THIS to your existing src/lib/catalogService.js
-//
-// AdminDashboard.jsx now imports { fetchBestSellers } from
-// this file. It doesn't exist yet — this is the only piece
-// I couldn't wire directly, since catalogService.js itself
-// was never uploaded to this conversation.
-//
-// Requires business_reporting_migration.sql to have been run
-// first (it creates the public.best_sellers view this reads
-// from).
+// FETCH BEST SELLERS
 // ============================================================
+//
+// Aggregates order_items across Completed orders, grouped by
+// product, ranked by units sold.
+//
+// Deliberately queries order_items + orders directly rather
+// than a Supabase view — order_items already stores the
+// product's name/code at the time of purchase (see
+// orderService.js's createOrder), so this stays accurate even
+// for products that have since been edited or deleted.
+//
 
-export async function fetchBestSellers(limit = 10) {
-  const { data, error } = await supabase
-    .from('best_sellers')
-    .select('*')
-    .limit(limit)
+export async function fetchBestSellers(limit = 5) {
+  const client = requireSupabase()
 
-  if (error) throw error
-  return data
+  const {
+    data,
+    error,
+  } = await client
+    .from('order_items')
+    .select(
+      'product_id, product_name, product_code, quantity, item_total, orders!inner(order_status)'
+    )
+    .eq('orders.order_status', 'Completed')
+
+  if (error) {
+    throw new Error(
+      error.message ||
+        'Failed to load best sellers.'
+    )
+  }
+
+  const totals = new Map()
+
+  for (const row of data || []) {
+    if (!row.product_id) {
+      continue
+    }
+
+    const existing =
+      totals.get(row.product_id) || {
+        product_id: row.product_id,
+        name: row.product_name || 'Unnamed Product',
+        product_code: row.product_code || '',
+        units_sold: 0,
+        revenue: 0,
+      }
+
+    existing.units_sold += Number(row.quantity || 0)
+    existing.revenue += Number(row.item_total || 0)
+
+    totals.set(row.product_id, existing)
+  }
+
+  return Array.from(totals.values())
+    .sort(
+      (a, b) => b.units_sold - a.units_sold
+    )
+    .slice(0, limit)
 }

@@ -20,10 +20,17 @@ function Header() {
   const [contactOpen, setContactOpen] =
     useState(false)
 
+  const [mobileMenuOpen, setMobileMenuOpen] =
+    useState(false)
+
   const contactRef = useRef(null)
 
   // =================================
-  // CONTACT MENU
+  // CONTACT MENU + MOBILE NAV
+  //
+  // Both menus live inside the same <nav>
+  // element, so a single outside-click
+  // handler closes whichever is open.
   // =================================
 
   useEffect(() => {
@@ -35,6 +42,14 @@ function Header() {
         )
       ) {
         setContactOpen(false)
+        setMobileMenuOpen(false)
+      }
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setContactOpen(false)
+        setMobileMenuOpen(false)
       }
     }
 
@@ -43,10 +58,20 @@ function Header() {
       handleClickOutside
     )
 
+    document.addEventListener(
+      'keydown',
+      handleKeyDown
+    )
+
     return () => {
       document.removeEventListener(
         'mousedown',
         handleClickOutside
+      )
+
+      document.removeEventListener(
+        'keydown',
+        handleKeyDown
       )
     }
   }, [])
@@ -85,6 +110,34 @@ function Header() {
         ref={contactRef}
       >
 
+        {/* =================================
+            MOBILE MENU TOGGLE
+
+            Hidden on desktop via CSS.
+            Reveals .mobile-nav-panel below,
+            since the links to its right
+            are display:none at this width.
+        ================================= */}
+
+        <button
+          type="button"
+          className={`mobile-menu-toggle${
+            mobileMenuOpen ? ' open' : ''
+          }`}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+          onClick={() => {
+            setMobileMenuOpen(
+              (open) => !open
+            )
+            setContactOpen(false)
+          }}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
         <Link to="/">
           Home
         </Link>
@@ -102,9 +155,78 @@ function Header() {
         </Link>
 
 
-        <Link to="/Trevor-cto">
+        <Link to="/trevor-cto">
           Developer
         </Link>
+
+
+        {/* =================================
+            MOBILE NAV PANEL
+
+            Same links as above, shown only
+            on mobile once the hamburger is
+            tapped (the links above this are
+            display:none at that width).
+        ================================= */}
+
+        {mobileMenuOpen && (
+          <div
+            className="mobile-nav-panel"
+            role="menu"
+          >
+
+            <Link
+              to="/"
+              role="menuitem"
+              onClick={() =>
+                setMobileMenuOpen(false)
+              }
+            >
+              Home
+            </Link>
+
+            <Link
+              to="/shop"
+              role="menuitem"
+              onClick={() =>
+                setMobileMenuOpen(false)
+              }
+            >
+              Shop
+            </Link>
+
+            <Link
+              to="/categories"
+              role="menuitem"
+              onClick={() =>
+                setMobileMenuOpen(false)
+              }
+            >
+              Categories
+            </Link>
+
+            <Link
+              to="/products"
+              role="menuitem"
+              onClick={() =>
+                setMobileMenuOpen(false)
+              }
+            >
+              All Products
+            </Link>
+
+            <Link
+              to="/trevor-cto"
+              role="menuitem"
+              onClick={() =>
+                setMobileMenuOpen(false)
+              }
+            >
+              Developer
+            </Link>
+
+          </div>
+        )}
 
 
 
@@ -120,11 +242,12 @@ function Header() {
             className="contact-trigger"
             aria-expanded={contactOpen}
             aria-haspopup="menu"
-            onClick={() =>
+            onClick={() => {
               setContactOpen(
                 (open) => !open
               )
-            }
+              setMobileMenuOpen(false)
+            }}
           >
             Contact
           </button>

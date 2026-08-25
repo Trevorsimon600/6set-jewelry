@@ -42,6 +42,7 @@ import {
 } from '../services/sales.js'
 
 import { fetchBestSellers } from '../lib/catalogService'
+import { exportToCSV } from '../lib/csvExport'
 
 import AdminProducts from './AdminProducts'
 import AdminCategories from './AdminCategories'
@@ -148,6 +149,29 @@ function AdminDashboard() {
     'Customers',
     'Settings',
   ]
+
+
+  /* ==========================================================
+     EXPORT CUSTOMERS TO CSV
+  ========================================================== */
+
+  function handleExportCustomers() {
+    const rows = customers.map((customer) => ({
+      name: customer?.name || '',
+      phone: customer?.phone || '',
+      location: customer?.location || '',
+      total_orders: safeNumber(
+        customer?.total_orders
+      ),
+      total_spent: safeNumber(
+        customer?.total_spent
+      ),
+      last_order_at:
+        customer?.last_order_at || '',
+    }))
+
+    exportToCSV(rows, 'customers.csv')
+  }
 
 
   /* ==========================================================
@@ -3275,6 +3299,19 @@ function AdminDashboard() {
                           {refreshing
                             ? 'Refreshing...'
                             : 'Refresh Customers'}
+                        </button>
+
+                        <button
+                          type="button"
+                          className="admin-action-button secondary"
+                          onClick={
+                            handleExportCustomers
+                          }
+                          disabled={
+                            customers.length === 0
+                          }
+                        >
+                          ⬇ Export CSV
                         </button>
 
                       </div>

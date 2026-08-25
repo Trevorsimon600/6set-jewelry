@@ -9,11 +9,21 @@
   background: #fffaff;
 
   color: #30243a;
+
+  overflow-x: hidden;
 }
 
 
 /* =================================
    MAIN SECTION
+
+   NOTE: this rule previously targeted
+   .product-details-container, which is
+   not a class the JSX ever renders. The
+   actual wrapping element is the <main>
+   tag itself, which now carries this
+   class name so the padding/background
+   below actually reaches the page.
 ================================= */
 
 .product-details-section {
@@ -27,15 +37,60 @@
     );
 }
 
-.product-details-container {
-  max-width: 1150px;
 
-  margin: 0 auto;
+/* =================================
+   BREADCRUMB
+
+   NOTE: not defined in the original
+   stylesheet at all. Colors below are
+   pulled from elsewhere in this same
+   file (#8d4388 link color, #6d5b73
+   muted text) to stay consistent with
+   the rest of the page.
+================================= */
+
+.product-details-breadcrumb {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 30px;
+
+  font-size: 0.85rem;
+}
+
+.product-details-breadcrumb a {
+  color: #8d4388;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.product-details-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.product-details-breadcrumb span {
+  color: #b6a3bb;
+}
+
+.product-details-breadcrumb span:last-child {
+  color: #4b3655;
+
+  font-weight: 600;
 }
 
 
 /* =================================
    BACK LINK
+   (currently unused by ProductDetails.jsx,
+   kept in case it's still referenced
+   elsewhere)
 ================================= */
 
 .product-back-link {
@@ -57,9 +112,21 @@
 
 /* =================================
    PRODUCT LAYOUT
+
+   NOTE: this rule previously targeted
+   .product-details-layout, which the
+   JSX never renders. The real wrapping
+   element is <section className=
+   "product-details-main">, so the
+   centering + grid rules below (values
+   unchanged) now live there instead.
 ================================= */
 
-.product-details-layout {
+.product-details-main {
+  max-width: 1150px;
+
+  margin: 0 auto;
+
   display: grid;
 
   grid-template-columns:
@@ -74,9 +141,24 @@
 
 /* =================================
    PRODUCT IMAGE
+
+   NOTE: previously this rule (container
+   sizing/background/shadow) was named
+   .product-details-image, and a separate
+   ".product-details-image img" rule
+   handled the inner <img>. In the actual
+   JSX, "product-details-image-container"
+   is the wrapper div and "product-details-
+   image" is the class on the <img> itself
+   — so the container styling below now
+   targets the real wrapper, and the img
+   rule (object-fit: cover, etc.) now
+   targets the real image class. This is
+   what fixes the stretched/distorted
+   product photos.
 ================================= */
 
-.product-details-image {
+.product-details-image-container {
   width: 100%;
 
   min-height: 520px;
@@ -91,7 +173,7 @@
     0 20px 55px rgba(70, 40, 80, 0.10);
 }
 
-.product-details-image img {
+.product-details-image {
   width: 100%;
 
   height: 100%;
@@ -101,6 +183,38 @@
   display: block;
 
   object-fit: cover;
+}
+
+
+/* =================================
+   IMAGE PLACEHOLDER
+   (shown when a product has no image;
+   not styled in the original file)
+================================= */
+
+.product-details-image-placeholder {
+  width: 100%;
+
+  min-height: 520px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 30px;
+
+  background: #f3e8f5;
+
+  color: #9a4f9b;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 20px 55px rgba(70, 40, 80, 0.10);
 }
 
 
@@ -161,6 +275,47 @@
 
 
 /* =================================
+   AVAILABILITY BADGE
+
+   NOTE: not defined in the original
+   stylesheet. JSX builds the modifier
+   class from the availability string
+   (lowercased, spaces to hyphens), so
+   the three variants below match what
+   it actually produces: "in-stock",
+   "low-stock", "out-of-stock".
+================================= */
+
+.product-details-availability {
+  display: inline-block;
+
+  margin: 14px 0 0;
+
+  padding: 6px 14px;
+
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.product-details-availability.in-stock {
+  background: #e3f3e6;
+  color: #2f7a3f;
+}
+
+.product-details-availability.low-stock {
+  background: #fdf0dc;
+  color: #a8681a;
+}
+
+.product-details-availability.out-of-stock {
+  background: #fbe6e6;
+  color: #a13a3a;
+}
+
+
+/* =================================
    DIVIDER
 ================================= */
 
@@ -189,19 +344,91 @@
   line-height: 1.8;
 }
 
+.product-details-description h2 {
+  margin: 28px 0 10px;
+
+  color: #38263f;
+
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.product-details-description p {
+  margin: 0;
+}
+
+
+/* =================================
+   META (Category / Stock / Min / Max)
+
+   NOTE: not defined in the original
+   stylesheet — .product-details-meta
+   had zero rules, so these four label
+   + value pairs were rendering as
+   unstyled stacked blocks.
+================================= */
+
+.product-details-meta {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 16px;
+
+  margin-top: 28px;
+
+  padding: 18px;
+
+  border: 1px solid #ead9ee;
+  border-radius: 16px;
+
+  background: #faf3fc;
+}
+
+.product-details-meta > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.product-details-meta span {
+  color: #8a798f;
+
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.product-details-meta strong {
+  color: #38263f;
+
+  font-size: 0.95rem;
+}
+
 
 /* =================================
    QUANTITY AREA
+
+   NOTE: previously named
+   .product-details-quantity-area, which
+   the JSX never renders — the real
+   wrapper is "product-details-quantity".
+   Values unchanged, adjusted to a
+   column layout since this element also
+   contains the "Min / Max" limit text
+   beneath the selector, which the old
+   single-row flex rule didn't account
+   for.
 ================================= */
 
-.product-details-quantity-area {
+.product-details-quantity {
   display: flex;
 
-  align-items: center;
+  flex-direction: column;
 
-  justify-content: space-between;
-
-  gap: 20px;
+  gap: 8px;
 
   margin-top: 35px;
 }
@@ -214,7 +441,7 @@
   font-weight: 700;
 }
 
-.quantity-rule {
+.quantity-limit {
   margin: 0;
 
   color: #8b788f;
@@ -279,14 +506,42 @@
 
 
 /* =================================
+   ACTIONS
+
+   NOTE: not defined in the original
+   stylesheet — this wraps the Add to
+   Cart button and the "View Category"
+   link, which were previously stacking
+   with no spacing between them.
+================================= */
+
+.product-details-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 28px;
+}
+
+
+/* =================================
    ADD TO CART
+
+   NOTE: this style was already fully
+   written but unused, because the JSX
+   was applying .product-details-button
+   (the generic pill) to the Add to Cart
+   button instead of this class. The JSX
+   now uses this class directly, so this
+   full-width, shadowed treatment finally
+   renders as originally designed.
 ================================= */
 
 .product-details-cart-button {
-  width: 100%;
-
-  margin-top: 28px;
-
   padding: 16px 20px;
 
   border: none;
@@ -317,7 +572,36 @@
 
 
 /* =================================
+   UNAVAILABLE MESSAGE
+
+   NOTE: not defined in the original
+   stylesheet — shown in place of the
+   Add to Cart button when a product
+   can't be ordered.
+================================= */
+
+.product-details-unavailable {
+  margin: 0;
+
+  padding: 14px 18px;
+
+  border: 1px solid #ead9ee;
+  border-radius: 14px;
+
+  background: #faf3fc;
+
+  color: #6d5b73;
+
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+
+/* =================================
    CATEGORY LINK
+   (currently unused by ProductDetails.jsx,
+   kept in case it's still referenced
+   elsewhere)
 ================================= */
 
 .continue-category-link {
@@ -340,7 +624,174 @@
 
 
 /* =================================
+   SHARED BUTTON (used for loading /
+   error / not-found links, and as the
+   base for the secondary variant below)
+================================= */
+
+.product-details-button {
+  display: inline-block;
+
+  padding: 14px 25px;
+
+  border-radius: 999px;
+
+  background: #964c92;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: 700;
+}
+
+
+/* =================================
+   SECONDARY BUTTON VARIANT
+
+   NOTE: the JSX applies "product-details-
+   button secondary" to the View Category /
+   Back to Products / More from links, but
+   .secondary had no rule at all, so these
+   were rendering identically to the solid
+   purple primary button. Styled here as an
+   outlined pill, matching the same pattern
+   Home.css already uses for its secondary
+   button.
+================================= */
+
+.product-details-button.secondary {
+  background: transparent;
+
+  border: 1px solid #a6539e;
+
+  color: #8d4388;
+}
+
+.product-details-button.secondary:hover {
+  background: #a6539e;
+
+  color: white;
+}
+
+
+/* =================================
+   NAVIGATION
+
+   NOTE: not defined in the original
+   stylesheet.
+================================= */
+
+.product-details-navigation {
+  max-width: 1150px;
+
+  margin: 60px auto 0;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 14px;
+}
+
+
+/* =================================
+   LOADING STATE
+
+   NOTE: not defined in the original
+   stylesheet.
+================================= */
+
+.product-details-loading {
+  min-height: 55vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 70px 7%;
+
+  text-align: center;
+}
+
+.product-details-loading h1 {
+  margin: 0 0 15px;
+
+  color: #38263f;
+
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.product-details-loading p:not(.small-heading) {
+  max-width: 550px;
+
+  color: #6d5b73;
+
+  line-height: 1.7;
+}
+
+
+/* =================================
+   PRODUCT NOT FOUND
+
+   NOTE: renamed from .product-not-found
+   to match the class the JSX actually
+   renders (.product-details-not-found).
+================================= */
+
+.product-details-not-found {
+  min-height: 55vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 70px 7%;
+
+  text-align: center;
+}
+
+.product-details-not-found h1 {
+  margin: 0 0 15px;
+
+  color: #38263f;
+
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.product-details-not-found > p:not(.small-heading) {
+  max-width: 550px;
+
+  margin-bottom: 25px;
+
+  color: #6d5b73;
+
+  line-height: 1.7;
+}
+
+
+/* =================================
    RELATED PRODUCTS
+
+   NOTE: this entire section (and its
+   grid/card styles below) is not
+   rendered anywhere in the current
+   ProductDetails.jsx — there is no
+   "Related Products" markup in the
+   component. Left in place untouched
+   in case this is a planned feature
+   that hasn't been built into the JSX
+   yet; not deleting on the assumption
+   it's simply unfinished rather than
+   unwanted.
 ================================= */
 
 .related-products-section {
@@ -466,74 +917,20 @@
 
 
 /* =================================
-   PRODUCT NOT FOUND
-================================= */
-
-.product-not-found {
-  min-height: 55vh;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 70px 7%;
-
-  text-align: center;
-}
-
-.product-not-found h1 {
-  margin: 0 0 15px;
-
-  color: #38263f;
-
-  font-size: clamp(2.2rem, 5vw, 4rem);
-}
-
-.product-not-found > p:not(.small-heading) {
-  max-width: 550px;
-
-  margin-bottom: 25px;
-
-  color: #6d5b73;
-
-  line-height: 1.7;
-}
-
-.product-details-button {
-  display: inline-block;
-
-  padding: 14px 25px;
-
-  border-radius: 999px;
-
-  background: #964c92;
-
-  color: white;
-
-  text-decoration: none;
-
-  font-weight: 700;
-}
-
-
-/* =================================
    TABLET
 ================================= */
 
 @media (max-width: 850px) {
 
-  .product-details-layout {
+  .product-details-main {
     grid-template-columns: 1fr;
 
     gap: 35px;
   }
 
+  .product-details-image-container,
   .product-details-image,
-  .product-details-image img {
+  .product-details-image-placeholder {
     min-height: 450px;
   }
 
@@ -556,8 +953,9 @@
       40px 6% 65px;
   }
 
+  .product-details-image-container,
   .product-details-image,
-  .product-details-image img {
+  .product-details-image-placeholder {
     min-height: 350px;
   }
 
@@ -565,10 +963,8 @@
     font-size: 2.5rem;
   }
 
-  .product-details-quantity-area {
-    align-items: flex-start;
-
-    flex-direction: column;
+  .product-details-meta {
+    grid-template-columns: 1fr;
   }
 
   .related-products-section {

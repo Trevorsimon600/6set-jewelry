@@ -98,6 +98,69 @@
 
 
 /* =================================
+   STOCK ERROR
+
+   NOTE: this class is used in Checkout.jsx
+   but was not defined anywhere in the
+   original stylesheet. Added to match the
+   existing card language (border-radius,
+   border, shadow) used elsewhere on this
+   page, with a warning/red tint to read as
+   an error state. Swap the colors below if
+   you already have an established error
+   color defined on another page.
+   ================================= */
+
+.checkout-stock-error {
+  margin-bottom: 22px;
+
+  padding: 18px 20px;
+
+  border: 1px solid #f0c4c4;
+  border-radius: 16px;
+
+  background: #fdf1f1;
+}
+
+.checkout-stock-error strong {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #9a3030;
+
+  font-size: 0.95rem;
+}
+
+.checkout-stock-error p {
+  margin: 6px 0 0;
+
+  color: #6c5a73;
+
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.checkout-stock-error ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+
+  color: #9a3030;
+
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.checkout-stock-error li {
+  margin-bottom: 4px;
+}
+
+.checkout-stock-error .back-to-cart {
+  margin-top: 14px;
+}
+
+
+/* =================================
    FORM GROUP
    ================================= */
 
@@ -226,6 +289,11 @@
 .place-order-button:hover {
   background: #713b7f;
   transform: translateY(-1px);
+}
+
+.place-order-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 
@@ -369,6 +437,8 @@
 
   justify-content: space-between;
 
+  gap: 12px;
+
   margin-bottom: 13px;
 
   color: #6e5b75;
@@ -376,10 +446,33 @@
   font-size: 0.9rem;
 }
 
+/*
+  Defensive only: admin-editable delivery
+  text (a free-text field in Supabase) can
+  in theory contain a long unbroken word or
+  URL. Without this, a flex child's default
+  min-width:auto can force overflow instead
+  of wrapping. With normal short text (the
+  current real content), this changes
+  nothing visually.
+*/
+.checkout-summary-row > span,
+.checkout-summary-row > strong {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.checkout-summary-row > span:last-child,
+.checkout-summary-row > strong:last-child {
+  text-align: right;
+}
+
 .checkout-summary-total {
   display: flex;
 
   justify-content: space-between;
+
+  gap: 12px;
 
   margin-top: 20px;
 

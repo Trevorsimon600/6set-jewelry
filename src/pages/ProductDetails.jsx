@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+
+import { useCart } from '../context/CartContext'
 
 import './ProductDetails.css'
 
@@ -12,12 +15,20 @@ function ProductDetails({
   error = '',
 }) {
   const { productId } = useParams()
+  const { addToCart } = useCart()
 
   const product = products.find(
     (item) =>
       String(item.id) ===
       String(productId)
   )
+
+  // =================================
+  // QUANTITY
+  // =================================
+
+  const [quantity, setQuantity] =
+    useState(1)
 
 
   // =================================
@@ -137,6 +148,69 @@ function ProductDetails({
 
 
   // =================================
+  // QUANTITY LIMITS
+  // =================================
+  //
+  // Same effective-min/max logic AllProducts.jsx uses — the
+  // limit is whichever is smaller: the admin's configured
+  // max, or what's actually in stock.
+  //
+
+  const minimumQuantity =
+    product.effectiveMinQuantity ??
+    product.minQuantity ??
+    1
+
+  const maximumQuantity =
+    product.effectiveMaxQuantity ??
+    product.maxQuantity ??
+    1
+
+  const effectiveQuantity =
+    Math.min(
+      Math.max(quantity, minimumQuantity),
+      maximumQuantity
+    )
+
+  function increaseQuantity() {
+    setQuantity((current) =>
+      Math.min(
+        Math.max(current, minimumQuantity) + 1,
+        maximumQuantity
+      )
+    )
+  }
+
+  function decreaseQuantity() {
+    setQuantity((current) =>
+      Math.max(
+        Math.max(current, minimumQuantity) - 1,
+        minimumQuantity
+      )
+    )
+  }
+
+  // =================================
+  // ADD TO CART
+  // =================================
+
+  function handleAddToCart() {
+    if (!product.isOrderable) {
+      return
+    }
+
+    const added =
+      addToCart(product, effectiveQuantity)
+
+    if (added) {
+      alert(
+        `${product.name} added to your cart.`
+      )
+    }
+  }
+
+
+  // =================================
   // CATEGORY URL
   // =================================
 
@@ -174,7 +248,7 @@ function ProductDetails({
 
       <Header />
 
-      <main>
+      <main className="product-details-section">
 
         {/* =================================
             BREADCRUMB
@@ -366,18 +440,75 @@ function ProductDetails({
             </div>
 
 
+            {/* QUANTITY */}
+
+            {product.isOrderable && (
+              <div className="product-details-quantity">
+
+                <span className="quantity-label">
+                  Quantity
+                </span>
+
+                <div className="quantity-selector">
+
+                  <button
+                    type="button"
+                    onClick={decreaseQuantity}
+                    disabled={
+                      effectiveQuantity <=
+                      minimumQuantity
+                    }
+                    aria-label={`Decrease ${product.name} quantity`}
+                  >
+                    −
+                  </button>
+
+                  <span>
+                    {effectiveQuantity}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={increaseQuantity}
+                    disabled={
+                      effectiveQuantity >=
+                      maximumQuantity
+                    }
+                    aria-label={`Increase ${product.name} quantity`}
+                  >
+                    +
+                  </button>
+
+                </div>
+
+                <p className="quantity-limit">
+                  Min {minimumQuantity}
+                  {' • '}
+                  Max {maximumQuantity}
+                </p>
+
+              </div>
+            )}
+
+
             {/* ACTIONS */}
 
             <div className="product-details-actions">
 
-              {product.availability !==
-                'Out of Stock' && (
+              {product.isOrderable ? (
                 <button
                   type="button"
-                  className="product-details-button"
+                  className="product-details-cart-button"
+                  onClick={handleAddToCart}
                 >
                   Add to Cart
                 </button>
+              ) : (
+                <p className="product-details-unavailable">
+                  {product.currentStock > 0
+                    ? `Only ${product.currentStock} available, which is below the minimum order quantity.`
+                    : 'This product is currently unavailable.'}
+                </p>
               )}
 
 

@@ -61,6 +61,59 @@ CATEGORY SECTION
 }
 
 /* =================================
+LOADING / ERROR / EMPTY STATES
+================================= */
+
+.categories-loading,
+.categories-error,
+.categories-empty {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 30px;
+  text-align: center;
+}
+
+.categories-loading p,
+.categories-empty p {
+  margin: 0;
+  color: #6c5a73;
+  line-height: 1.6;
+}
+
+.categories-error {
+  border: 1px solid #ead9ee;
+  border-radius: 20px;
+  background: #faf3fc;
+}
+
+.categories-error p {
+  margin: 0;
+  color: #8d4388;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* =================================
+CATEGORY IMAGE PLACEHOLDER
+================================= */
+
+.category-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  color: #b48fb0;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* =================================
 CATEGORY GRID
 ================================= */
 

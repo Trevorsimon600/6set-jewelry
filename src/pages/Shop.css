@@ -19,6 +19,9 @@
   display: flex;
   align-items: center;
 
+  max-width: 1400px;
+  margin: 0 auto;
+
   padding: 80px 8%;
 
   background:
@@ -88,6 +91,27 @@
   background: #773b76;
 
   transform: translateY(-2px);
+}
+
+
+/* =================================
+   STATE MESSAGES (LOADING / ERROR / EMPTY)
+================================= */
+
+.shop-state-message {
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  padding: 40px 20px;
+
+  text-align: center;
+
+  color: #6e5b75;
+
+  font-size: 1rem;
+
+  line-height: 1.7;
 }
 
 
@@ -389,6 +413,21 @@
    MOBILE
 ================================= */
 
+@media (max-width: 1100px) {
+
+  .shop-product-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+  .shop-category-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+}
+
+
 @media (max-width: 900px) {
 
   .shop-product-grid {
@@ -428,6 +467,22 @@
 
   .shop-product-image {
     height: 300px;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .shop-hero h1 {
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
+  }
+
+  .shop-featured,
+  .shop-categories,
+  .shop-all-products {
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
 }

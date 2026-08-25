@@ -7,6 +7,7 @@
   min-height: 100vh;
   background: #fffaff;
   color: #30243a;
+  overflow-x: hidden;
 }
 
 
@@ -184,6 +185,51 @@
 
   font-size: 1.2rem;
   font-weight: 800;
+}
+
+
+/* =================================
+   STOCK STATUS BADGE
+
+   NOTE: AllProducts.jsx sets one of
+   these three classes based on stock
+   level (product-stock-out / -low /
+   -available), but none were defined
+   in this stylesheet — the text was
+   rendering unstyled. Same color
+   treatment used for the equivalent
+   badge on ProductDetails.css, so
+   both pages read consistently.
+   ================================= */
+
+.product-stock-out,
+.product-stock-low,
+.product-stock-available {
+  display: inline-block;
+
+  margin: 0 0 12px;
+
+  padding: 5px 12px;
+
+  border-radius: 999px;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.product-stock-available {
+  background: #e3f3e6;
+  color: #2f7a3f;
+}
+
+.product-stock-low {
+  background: #fdf0dc;
+  color: #a8681a;
+}
+
+.product-stock-out {
+  background: #fbe6e6;
+  color: #a13a3a;
 }
 
 

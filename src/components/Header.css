@@ -97,6 +97,84 @@
   transform: translateY(-1px);
 }
 
+
+/* =================================
+   MOBILE MENU TOGGLE
+
+   Hidden on desktop (see media query
+   below). Three bars that animate into
+   an X when open, using the same nav
+   text color as everything else here.
+================================= */
+
+.mobile-menu-toggle {
+  display: none;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.mobile-menu-toggle:hover {
+  background: #f9eef7;
+}
+
+.mobile-menu-toggle span {
+  display: block;
+
+  width: 20px;
+  height: 2px;
+
+  border-radius: 2px;
+
+  background: #4b3655;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.mobile-menu-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* =================================
+   MOBILE NAV PANEL
+
+   Reuses the same translucent white +
+   shadow treatment as .contact-menu so
+   it reads as part of the same design
+   language rather than a new pattern.
+================================= */
+
+.mobile-nav-panel {
+  display: none;
+}
+
 .header-contact-wrap {
   position: relative;
   display: inline-flex;
@@ -326,6 +404,70 @@
 
   .navigation a {
     display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .mobile-nav-panel {
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 8px 0;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border-top: 1px solid #eadfe8;
+    border-bottom: 1px solid #eadfe8;
+
+    box-shadow:
+      0 18px 42px rgba(70, 40, 80, 0.12);
+
+    z-index: 90;
+
+    animation: mobileNavReveal 0.18s ease;
+  }
+
+  .mobile-nav-panel a {
+    display: block;
+
+    padding: 14px 5%;
+
+    color: #4b3655;
+
+    text-decoration: none;
+
+    font-size: 0.98rem;
+    font-weight: 600;
+
+    border-bottom: 1px solid #f5eef7;
+  }
+
+  .mobile-nav-panel a:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav-panel a:hover {
+    background: #f9eef7;
+    color: #8d4388;
+  }
+
+  @keyframes mobileNavReveal {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .header-contact-wrap {

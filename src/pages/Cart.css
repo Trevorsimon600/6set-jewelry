@@ -7,6 +7,7 @@
   min-height: 100vh;
   background: #fffaff;
   color: #30243a;
+  overflow-x: hidden;
 }
 
 
