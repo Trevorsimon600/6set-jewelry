@@ -898,3 +898,21 @@ export async function fetchBestSellers(limit = 5) {
     )
     .slice(0, limit)
 }
+
+// ============================================================
+// ADD THIS to your existing src/lib/catalogService.js
+//
+// Home.jsx now imports { fetchBestSellingCategories } from
+// this file. Same pattern as fetchBestSellers — requires
+// best_selling_categories.sql to have been run first.
+// ============================================================
+
+export async function fetchBestSellingCategories(limit = 4) {
+  const { data, error } = await supabase
+    .from('best_selling_categories')
+    .select('*')
+    .limit(limit)
+
+  if (error) throw error
+  return data
+}

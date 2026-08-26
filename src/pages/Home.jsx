@@ -8,7 +8,14 @@ import {
   useShopSettings,
 } from '../context/ShopSettingsContext'
 
+import {
+  fetchBestSellingCategories,
+  fetchStorefrontCategories,
+} from '../lib/catalogService'
+
 import './Home.css'
+
+const MAX_HOME_CATEGORIES = 4
 
 function Home() {
   const [showSplash, setShowSplash] =
@@ -40,6 +47,115 @@ function Home() {
     }, 2000)
 
     return () => clearTimeout(timer)
+  }, [])
+
+  // =================================
+  // TOP CATEGORIES
+  //
+  // Best-selling categories first (real
+  // sales data), topped up with regular
+  // published categories if there aren't
+  // 4 with sales yet — so this section
+  // never shows empty on a new store or
+  // a slow month.
+  // =================================
+
+  const [topCategories, setTopCategories] =
+    useState([])
+
+  const [
+    categoriesLoading,
+    setCategoriesLoading,
+  ] = useState(true)
+
+  useEffect(() => {
+    let isMounted = true
+
+    async function loadTopCategories() {
+      try {
+        setCategoriesLoading(true)
+
+        const bestSelling =
+          await fetchBestSellingCategories(
+            MAX_HOME_CATEGORIES
+          )
+
+        if (!isMounted) return
+
+        const normalizedBestSelling =
+          (bestSelling || []).map(
+            (category) => ({
+              id: category.category_id,
+              name: category.name,
+              slug: category.slug,
+              image: category.image,
+            })
+          )
+
+        const remainingSlots =
+          MAX_HOME_CATEGORIES -
+          normalizedBestSelling.length
+
+        let finalCategories =
+          normalizedBestSelling
+
+        if (remainingSlots > 0) {
+          const allCategories =
+            await fetchStorefrontCategories()
+
+          if (!isMounted) return
+
+          const usedIds = new Set(
+            normalizedBestSelling.map(
+              (category) => category.id
+            )
+          )
+
+          const fillerCategories =
+            (allCategories || [])
+              .filter(
+                (category) =>
+                  category.published !== false &&
+                  !usedIds.has(category.id)
+              )
+              .slice(0, remainingSlots)
+              .map((category) => ({
+                id: category.id,
+                name: category.name,
+                slug: category.slug,
+                image: category.image,
+              }))
+
+          finalCategories = [
+            ...normalizedBestSelling,
+            ...fillerCategories,
+          ]
+        }
+
+        if (isMounted) {
+          setTopCategories(finalCategories)
+        }
+      } catch (err) {
+        console.error(
+          'Failed to load top categories:',
+          err
+        )
+
+        if (isMounted) {
+          setTopCategories([])
+        }
+      } finally {
+        if (isMounted) {
+          setCategoriesLoading(false)
+        }
+      }
+    }
+
+    loadTopCategories()
+
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   // =================================
@@ -134,6 +250,11 @@ function Home() {
 
         {/* =================================
             SHOP BY CATEGORY
+
+            Shows up to 4 best-selling
+            categories, topped up with
+            regular categories if fewer
+            than 4 have sales yet.
         ================================= */}
 
         <section className="home-categories">
@@ -154,125 +275,56 @@ function Home() {
 
           </div>
 
+          {categoriesLoading && (
+            <p className="home-categories-loading">
+              Loading collections...
+            </p>
+          )}
 
-          <div className="home-category-grid">
+          {!categoriesLoading &&
+            topCategories.length > 0 && (
 
-            {/* =================================
-                EARRINGS
-            ================================= */}
+              <div className="home-category-grid">
 
-            <Link
-              to="/category/earrings"
-              className="home-category-card"
-            >
+                {topCategories.map(
+                  (category) => (
 
-              <img
-                src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=85"
-                alt="Earrings"
-              />
+                    <Link
+                      key={category.id}
+                      to={`/category/${category.slug}`}
+                      className="home-category-card"
+                    >
 
-              <div className="category-overlay">
+                      {category.image ? (
+                        <img
+                          src={category.image}
+                          alt={category.name}
+                        />
+                      ) : (
+                        <div className="home-category-placeholder">
+                          {shopName}
+                        </div>
+                      )}
 
-                <h3>
-                  Earrings
-                </h3>
+                      <div className="category-overlay">
 
-                <span>
-                  Explore Collection →
-                </span>
+                        <h3>
+                          {category.name}
+                        </h3>
 
-              </div>
+                        <span>
+                          Explore Collection →
+                        </span>
 
-            </Link>
+                      </div>
 
+                    </Link>
 
-            {/* =================================
-                NECKLACES
-            ================================= */}
-
-            <Link
-              to="/category/necklaces"
-              className="home-category-card"
-            >
-
-              <img
-                src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=85"
-                alt="Necklaces"
-              />
-
-              <div className="category-overlay">
-
-                <h3>
-                  Necklaces
-                </h3>
-
-                <span>
-                  Explore Collection →
-                </span>
+                  )
+                )}
 
               </div>
-
-            </Link>
-
-
-            {/* =================================
-                BRACELETS
-            ================================= */}
-
-            <Link
-              to="/category/bracelets"
-              className="home-category-card"
-            >
-
-              <img
-                src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=85"
-                alt="Bracelets"
-              />
-
-              <div className="category-overlay">
-
-                <h3>
-                  Bracelets
-                </h3>
-
-                <span>
-                  Explore Collection →
-                </span>
-
-              </div>
-
-            </Link>
-
-
-            {/* =================================
-                RINGS
-            ================================= */}
-
-            <Link
-              to="/category/rings"
-              className="home-category-card"
-            >
-
-              <img
-                src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85"
-                alt="Rings"
-              />
-
-              <div className="category-overlay">
-
-                <h3>
-                  Rings
-                </h3>
-
-                <span>
-                  Explore Collection →
-                </span>
-
-              </div>
-
-            </Link>
-
-          </div>
+            )}
 
 
           {/* =================================

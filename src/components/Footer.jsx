@@ -48,29 +48,27 @@ function Footer() {
 
       {/* =================================
           BRAND
+          (logo + shop name, grouped)
       ================================= */}
 
       <Link
         to="/"
-        className="footer-logo"
+        className="footer-brand"
         aria-label={`${shopName} home`}
       >
 
-        <img
-          src={logoUrl}
-          alt={shopName}
-        />
+        <span className="footer-logo">
+          <img
+            src={logoUrl}
+            alt={shopName}
+          />
+        </span>
+
+        <span className="footer-shop-name">
+          {shopName}
+        </span>
 
       </Link>
-
-
-      {/* =================================
-          SHOP NAME
-      ================================= */}
-
-      <p className="footer-shop-name">
-        {shopName}
-      </p>
 
 
       {/* =================================
@@ -193,24 +191,28 @@ function Footer() {
 
 
       {/* =================================
-          COPYRIGHT
+          LEGAL LINE
+          (copyright + made with love,
+          combined onto one line)
       ================================= */}
 
-      <p className="footer-copyright">
+      <p className="footer-legal">
 
-        © {currentYear} {shopName}.
-        All rights reserved.
+        <span className="footer-copyright">
+          © {currentYear} {shopName}.
+          All rights reserved.
+        </span>
 
-      </p>
+        <span
+          className="footer-legal-divider"
+          aria-hidden="true"
+        >
+          ·
+        </span>
 
-
-      {/* =================================
-          MADE WITH LOVE
-      ================================= */}
-
-      <p className="made-with-love">
-
-        Made with Love ❤️
+        <span className="made-with-love">
+          Made with Love ❤️
+        </span>
 
       </p>
 

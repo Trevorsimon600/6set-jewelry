@@ -717,19 +717,20 @@
   /* ---- BOTTOM NAVIGATION BUTTONS: shrunk for phone ---- */
 
   .category-navigation {
-    flex-direction: column;
-    gap: 12px;
-    margin: 40px auto 50px;
-    padding: 24px 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px auto 40px;
+    padding: 16px;
   }
 
   .category-page-button {
-    width: 100%;
-    max-width: 240px;
+    width: auto;
+    max-width: none;
     min-width: 0;
-    min-height: 42px;
-    padding: 10px 18px;
-    font-size: 0.82rem;
+    min-height: 38px;
+    padding: 9px 16px;
+    font-size: 0.76rem;
   }
 
 }
@@ -767,6 +768,18 @@
   .add-cart-button {
     padding: 8px 6px;
     font-size: 0.66rem;
+  }
+
+  .category-navigation {
+    gap: 8px;
+    margin: 24px auto 30px;
+    padding: 14px;
+  }
+
+  .category-page-button {
+    min-height: 34px;
+    padding: 8px 13px;
+    font-size: 0.7rem;
   }
 
   .category-page-loading,
