@@ -466,7 +466,10 @@ function CategoryPage() {
 
                       {/* PRODUCT IMAGE */}
 
-                      <div className="product-image">
+                      <Link
+                        to={`/product/${product.id}`}
+                        className="product-image"
+                      >
 
                         {product.image ? (
                           <img
@@ -483,7 +486,7 @@ function CategoryPage() {
                           </div>
                         )}
 
-                      </div>
+                      </Link>
 
                       {/* PRODUCT INFORMATION */}
 
@@ -498,6 +501,13 @@ function CategoryPage() {
                         <h2>
                           {product.name}
                         </h2>
+
+                        <Link
+                          to={`/product/${product.id}`}
+                          className="product-view-link"
+                        >
+                          View Details
+                        </Link>
 
                         <p className="product-description">
                           {

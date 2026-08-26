@@ -126,6 +126,9 @@ function Header() {
           }`}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
+          onMouseDown={(event) =>
+            event.stopPropagation()
+          }
           onClick={() => {
             setMobileMenuOpen(
               (open) => !open
@@ -242,6 +245,9 @@ function Header() {
             className="contact-trigger"
             aria-expanded={contactOpen}
             aria-haspopup="menu"
+            onMouseDown={(event) =>
+              event.stopPropagation()
+            }
             onClick={() => {
               setContactOpen(
                 (open) => !open

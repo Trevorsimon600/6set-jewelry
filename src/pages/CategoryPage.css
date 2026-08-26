@@ -181,9 +181,12 @@
 ========================================= */
 
 .product-image {
+  display: block;
   height: 260px;
   overflow: hidden;
   background: #f8effb;
+  text-decoration: none;
+  color: inherit;
 }
 
 .product-image img {
@@ -236,6 +239,19 @@
   margin: 0 0 10px;
   color: #38263f;
   font-size: 1.15rem;
+}
+
+.product-view-link {
+  display: inline-block;
+  margin: 0 0 12px;
+  color: #8d4388;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.product-view-link:hover {
+  text-decoration: underline;
 }
 
 .product-description {
@@ -548,6 +564,12 @@
 
 /* =========================================
    MOBILE
+
+   Phone layout mirrors a dense 2-per-row
+   grid (Jumia-style) rather than dropping
+   to one giant card — every element below
+   is the SAME element, just sized to fit
+   two per row. Nothing is removed.
 ========================================= */
 
 @media (max-width: 700px) {
@@ -561,7 +583,7 @@
   }
 
   .category-products-section {
-    padding: 50px 20px;
+    padding: 50px 16px;
   }
 
   .category-products-heading {
@@ -574,14 +596,125 @@
     font-size: 30px;
   }
 
+  /* ---- GRID: stays 2-up on every phone ---- */
+
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 14px;
+  }
+
+  /* ---- CARD ---- */
+
+  .product-card {
+    border-radius: 16px;
+  }
+
+  /* ---- IMAGE: square, scales with card width ---- */
+
+  .product-image {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-image-placeholder {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    padding: 8px;
+  }
+
+  /* ---- INFO ---- */
+
+  .product-info {
+    padding: 12px;
+  }
+
+  .product-category {
+    margin: 0 0 4px;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
   }
 
   .product-info h2 {
-    font-size: 1.05rem;
+    margin: 0 0 6px;
+    font-size: 0.82rem;
+    line-height: 1.3;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
+
+  .product-view-link {
+    margin: 0 0 6px;
+    font-size: 0.68rem;
+  }
+
+  .product-description {
+    margin: 0 0 8px;
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .product-stock-available,
+  .product-stock-low,
+  .product-stock-out {
+    margin: 0 0 6px;
+    font-size: 0.64rem;
+  }
+
+  .product-price {
+    margin: 0 0 2px;
+    font-size: 0.9rem;
+  }
+
+  .unit-price {
+    margin: 0 0 8px;
+    font-size: 0.62rem;
+  }
+
+  /* ---- QUANTITY ---- */
+
+  .quantity-selector button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+  }
+
+  .quantity-selector span {
+    min-width: 24px;
+    font-size: 0.82rem;
+  }
+
+  .quantity-limit {
+    margin: 6px 0 8px;
+    font-size: 0.6rem;
+  }
+
+  /* ---- ADD TO CART ---- */
+
+  .add-cart-button {
+    padding: 9px 10px;
+    font-size: 0.72rem;
+    border-radius: 999px;
+  }
+
+  /* ---- NOT ORDERABLE ---- */
+
+  .product-unavailable {
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .product-unavailable strong {
+    font-size: 0.76rem;
+  }
+
+  .product-unavailable p {
+    font-size: 0.66rem;
+  }
+
+  /* ---- BOTTOM NAVIGATION BUTTONS: shrunk for phone ---- */
 
   .category-navigation {
     flex-direction: column;
@@ -592,8 +725,11 @@
 
   .category-page-button {
     width: 100%;
-    max-width: 320px;
+    max-width: 240px;
     min-width: 0;
+    min-height: 42px;
+    padding: 10px 18px;
+    font-size: 0.82rem;
   }
 
 }
@@ -601,16 +737,36 @@
 
 /* =========================================
    SMALL MOBILE
+
+   Still 2 columns — just a little tighter
+   still, for the narrowest phones.
 ========================================= */
 
-@media (max-width: 430px) {
+@media (max-width: 380px) {
 
   .category-hero-content h1 {
-    font-size: clamp(2.2rem, 9vw, 2.8rem);
+    font-size: clamp(2rem, 9vw, 2.6rem);
   }
 
   .products-grid {
-    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .product-info {
+    padding: 9px;
+  }
+
+  .product-info h2 {
+    font-size: 0.76rem;
+  }
+
+  .product-price {
+    font-size: 0.82rem;
+  }
+
+  .add-cart-button {
+    padding: 8px 6px;
+    font-size: 0.66rem;
   }
 
   .category-page-loading,
