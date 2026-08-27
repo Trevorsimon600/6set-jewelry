@@ -410,7 +410,7 @@
 
 
 /* =================================
-   MOBILE
+   TABLET
 ================================= */
 
 @media (max-width: 1100px) {
@@ -443,12 +443,21 @@
 }
 
 
+/* =================================
+   MOBILE
+
+   Product and category tiles stay 2-per-row
+   (not one giant block) — every element below
+   is the SAME element, just sized to fit two
+   per row. Nothing is removed.
+================================= */
+
 @media (max-width: 600px) {
 
   .shop-hero {
-    min-height: 430px;
+    min-height: auto;
 
-    padding: 60px 7%;
+    padding: 50px 7%;
 
     text-align: center;
   }
@@ -457,20 +466,119 @@
     margin: auto;
   }
 
-  .shop-product-grid {
-    grid-template-columns: 1fr;
+  .shop-featured,
+  .shop-categories {
+    padding: 60px 5%;
   }
 
-  .shop-category-grid {
-    grid-template-columns: 1fr;
+  /* ---- FEATURED PRODUCTS: stays 2-up ---- */
+
+  .shop-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+  }
+
+  .shop-product-card {
+    border-radius: 16px;
   }
 
   .shop-product-image {
-    height: 300px;
+    height: auto;
+
+    aspect-ratio: 1 / 1;
+  }
+
+  .shop-product-info {
+    padding: 12px;
+  }
+
+  .product-category {
+    margin-bottom: 4px;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 1px;
+  }
+
+  .shop-product-info h3 {
+    margin: 0 0 6px;
+
+    font-size: 0.82rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .shop-product-info strong {
+    margin-bottom: 8px;
+
+    font-size: 0.88rem;
+  }
+
+  .shop-product-link {
+    font-size: 0.7rem;
+  }
+
+  /* ---- SHOP BY CATEGORY: stays 2-up ---- */
+
+  .shop-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+  }
+
+  .shop-category-card {
+    height: 170px;
+
+    border-radius: 16px;
+  }
+
+  .shop-category-overlay {
+    padding: 12px;
+
+    gap: 2px;
+  }
+
+  .shop-category-overlay span {
+    font-size: 0.95rem;
+  }
+
+  .shop-category-overlay small {
+    font-size: 0.68rem;
+  }
+
+  /* ---- COMPLETE COLLECTION: text + button shrink ---- */
+
+  .shop-all-products {
+    padding: 60px 6%;
+  }
+
+  .shop-all-products h2 {
+    font-size: 1.7rem;
+  }
+
+  .shop-all-products p:not(.small-heading) {
+    font-size: 0.88rem;
+  }
+
+  .shop-all-button {
+    padding: 11px 22px;
+
+    font-size: 0.85rem;
   }
 
 }
 
+
+/* =================================
+   SMALL MOBILE
+
+   Still 2 columns — just a little
+   tighter still for narrow phones.
+================================= */
 
 @media (max-width: 500px) {
 
@@ -478,11 +586,36 @@
     font-size: clamp(2.4rem, 9vw, 3.2rem);
   }
 
-  .shop-featured,
-  .shop-categories,
-  .shop-all-products {
-    padding-top: 60px;
-    padding-bottom: 60px;
+}
+
+
+@media (max-width: 380px) {
+
+  .shop-product-grid,
+  .shop-category-grid {
+    gap: 10px;
+  }
+
+  .shop-product-info {
+    padding: 9px;
+  }
+
+  .shop-product-info h3 {
+    font-size: 0.76rem;
+  }
+
+  .shop-product-info strong {
+    font-size: 0.8rem;
+  }
+
+  .shop-category-card {
+    height: 145px;
+  }
+
+  .shop-all-button {
+    padding: 9px 18px;
+
+    font-size: 0.78rem;
   }
 
 }

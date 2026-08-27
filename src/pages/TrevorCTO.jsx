@@ -1,6 +1,31 @@
 import './TrevorCTO.css'
 import { Link } from 'react-router-dom'
 
+// =================================
+// TREVOR — CONTACT / SOCIAL
+// =================================
+
+const TREVOR_WHATSAPP_NUMBER = '254115507150'
+
+const TREVOR_WHATSAPP_MESSAGE =
+  "Hi Trevor, I have a project I'd like to discuss."
+
+const TREVOR_WHATSAPP_URL =
+  `https://wa.me/${TREVOR_WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    TREVOR_WHATSAPP_MESSAGE
+  )}`
+
+const TREVOR_EMAIL = 'trevorsimon600@gmail.com'
+
+const TREVOR_INSTAGRAM_URL =
+  'https://www.instagram.com/tr3v0r_n.c.t'
+
+const TREVOR_X_URL =
+  'https://x.com/Simo63903Trevor'
+
+const TREVOR_TIKTOK_URL =
+  'https://www.tiktok.com/@trevorsimon001'
+
 function TrevorCTO() {
   const systems = [
     {
@@ -148,7 +173,7 @@ function TrevorCTO() {
               </h1>
 
               <h2>
-                Developer & CTO
+                Developer & CTO of 6Set Jewelry.
               </h2>
 
               <p className="cto-hero-description">
@@ -214,7 +239,7 @@ function TrevorCTO() {
                   </span>
 
                   <strong>
-                    DEVELOPER / CTO
+                    DEVELOPER / CTO of 6SET JEWELRY
                   </strong>
 
                 </div>
@@ -899,6 +924,71 @@ function TrevorCTO() {
 
 
       {/* =========================================
+          HAVE AN IDEA? (ADVERTISEMENT)
+      ========================================= */}
+
+      <section className="cto-cta-section">
+
+        <div className="cto-grid-background" />
+
+        <div className="cto-container cto-cta-content">
+
+          <p className="cto-system-label">
+            <span className="cto-status-dot" />
+            HAVE AN IDEA?
+          </p>
+
+          <h2>
+            Let's Build
+            <span> Something Real.</span>
+          </h2>
+
+          <p className="cto-cta-lead">
+            6Set Jewelry is one example of what I build.
+            Have a business, idea, or project that needs
+            technology behind it? I design and build modern
+            websites, e-commerce platforms, business systems,
+            and custom digital experiences — from the first
+            idea to a working product.
+          </p>
+
+          <p className="cto-cta-tagline">
+            WEBSITES &middot; E-COMMERCE &middot; BUSINESS SYSTEMS &middot; CUSTOM SOFTWARE
+          </p>
+
+          <div className="cto-cta-actions">
+
+            <a
+              href={TREVOR_WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="cto-primary-button"
+            >
+              Start a Project
+              <span>→</span>
+            </a>
+
+            <a
+              href={TREVOR_WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="cto-glass-button"
+            >
+              Chat on WhatsApp
+            </a>
+
+          </div>
+
+          <p className="cto-cta-closing">
+            Your idea could be the next system I build.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================================
           DEVELOPER FOOTER
       ========================================= */}
 
@@ -906,17 +996,132 @@ function TrevorCTO() {
 
         <div className="cto-container">
 
+          {/* CONNECT */}
+
           <p className="cto-system-label">
             <span className="cto-status-dot" />
-            END OF SYSTEM PROFILE
+            CONNECT WITH THE DEVELOPER
+          </p>
+
+          <p className="cto-connect-lead">
+            Follow the work. See what I'm building next.
+          </p>
+
+          <div className="cto-connect-icons">
+
+            <a
+              href={TREVOR_INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="cto-connect-icon"
+              aria-label="Instagram"
+              title="Instagram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect
+                  x="3" y="3" width="18" height="18"
+                  rx="5" ry="5"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                />
+                <circle
+                  cx="12" cy="12" r="4"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+              </svg>
+            </a>
+
+            <a
+              href={TREVOR_X_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="cto-connect-icon"
+              aria-label="X"
+              title="X"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M18.9 2H22l-8.6 9.8L23 22h-6.6l-5.2-6.8L5 22H2l9.3-10.6L1 2h6.8l4.7 6.2L18.9 2Zm-1.2 18h1.8L7.4 3.9H5.5L17.7 20Z"
+                />
+              </svg>
+            </a>
+
+            <a
+              href={TREVOR_TIKTOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="cto-connect-icon"
+              aria-label="TikTok"
+              title="TikTok"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M15 3c.4 2.1 1.6 3.6 4 4v3.1c-1.5-.1-2.8-.6-4-1.4v6.8c0 3.5-2.4 5.5-5.5 5.5A5.5 5.5 0 1 1 15 15.5v3.2a2.5 2.5 0 1 0-2.5-2.4V3H15Z"
+                />
+              </svg>
+            </a>
+
+            <a
+              href={TREVOR_WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="cto-connect-icon"
+              aria-label="WhatsApp"
+              title="WhatsApp"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12 2a10 10 0 0 0-8.6 15.1L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.6 14.2c-.2.6-1.3 1.2-1.9 1.3-.5.1-1.1.1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.3c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.2.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.9.3.1.5.2.5.3.1.2.1.6-.1 1.2Z"
+                />
+              </svg>
+            </a>
+
+            <a
+              href={`mailto:${TREVOR_EMAIL}`}
+              className="cto-connect-icon"
+              aria-label="Email"
+              title="Email"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect
+                  x="3" y="5" width="18" height="14" rx="2"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                />
+                <path
+                  d="M4 7l8 6 8-6"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                />
+              </svg>
+            </a>
+
+          </div>
+
+          <div className="cto-footer-divider" />
+
+          {/* IDENTITY */}
+
+          <p className="cto-system-label">
+            <span className="cto-status-dot" />
+            SYSTEM / DEVELOPER PROFILE
           </p>
 
           <h2>
             Trevor Simon
           </h2>
 
-          <p>
+          <p className="cto-footer-role">
+            CTO — 6Set Jewelry
+          </p>
+
+          <p className="cto-footer-descriptor">
             Developer · System Architect · Technology Builder
+          </p>
+
+          <p className="cto-footer-copyright">
+            © 2026 Trevor Simon
           </p>
 
           <div className="cto-footer-actions">

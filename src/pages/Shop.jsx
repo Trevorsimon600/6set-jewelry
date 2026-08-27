@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { fetchBestSellers } from '../lib/catalogService'
 import './Shop.css'
 
 function Shop({
@@ -10,11 +12,82 @@ function Shop({
   error,
 }) {
   // =================================
+  // BEST SELLERS
+  // =================================
+  //
+  // Featured section leads with whatever is actually
+  // selling (Completed orders, most units sold first).
+  // If there's no sales data yet, featuredProducts below
+  // falls back to the original behavior untouched.
+  //
+
+  const [bestSellerIds, setBestSellerIds] =
+    useState([])
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadBestSellers() {
+      try {
+        const data =
+          await fetchBestSellers(8)
+
+        if (!cancelled) {
+          setBestSellerIds(
+            (data || []).map(
+              (item) => item.product_id
+            )
+          )
+        }
+      } catch (err) {
+        console.error(
+          'Failed to load best sellers:',
+          err
+        )
+      }
+    }
+
+    loadBestSellers()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // =================================
   // FEATURED PRODUCTS
   // =================================
+  //
+  // Best sellers first, in ranked order, filled out
+  // with other products up to 4. If none of the best
+  // sellers match a currently live product, this falls
+  // back to exactly what it did before.
+  // =================================
+
+  const bestSellingProducts = bestSellerIds
+    .map((id) =>
+      products.find(
+        (product) =>
+          String(product.id) === String(id)
+      )
+    )
+    .filter(Boolean)
+
+  const remainingProducts = products.filter(
+    (product) =>
+      !bestSellingProducts.some(
+        (bestSeller) =>
+          bestSeller.id === product.id
+      )
+  )
 
   const featuredProducts =
-    products.slice(0, 4)
+    bestSellingProducts.length > 0
+      ? [
+          ...bestSellingProducts,
+          ...remainingProducts,
+        ].slice(0, 4)
+      : products.slice(0, 4)
 
   // =================================
   // SHOP CATEGORIES

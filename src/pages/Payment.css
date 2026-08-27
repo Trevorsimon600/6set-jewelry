@@ -1135,6 +1135,36 @@
 
 
 /* ============================================================
+   SUMMARY IMAGE PLACEHOLDER
+============================================================ */
+
+.payment-summary-image-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 2px;
+
+  text-align: center;
+
+  color: #b48fb0;
+
+  font-size: 0.52rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  line-height: 1.2;
+}
+
+
+/* ============================================================
    ITEM NAME
 ============================================================ */
 
@@ -1627,6 +1657,23 @@
 
   .payment-summary-total strong {
     font-size: 1.15rem;
+  }
+
+
+  .payment-empty {
+    padding: 60px 6%;
+  }
+
+
+  .payment-empty p:not(.small-heading) {
+    font-size: 0.9rem;
+  }
+
+
+  .payment-primary-button {
+    padding: 13px 22px;
+
+    font-size: 0.85rem;
   }
 
 }
