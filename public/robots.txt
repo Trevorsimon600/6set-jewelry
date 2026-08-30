@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+
+Sitemap: https://6set-jewelry.pages.dev/sitemap.xml
