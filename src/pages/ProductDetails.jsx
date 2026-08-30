@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import Header from '../components/Header'
@@ -29,6 +29,340 @@ function ProductDetails({
 
   const [quantity, setQuantity] =
     useState(1)
+
+
+  // =================================
+  // SEO
+  // =================================
+
+  useEffect(() => {
+    const siteName = '6Set Jewelry'
+
+    // ---------------------------------
+    // PRODUCT NOT YET LOADED
+    // ---------------------------------
+
+    if (!product) {
+      document.title = `${siteName} | Jewelry Store`
+
+      return () => {
+        document.title = siteName
+      }
+    }
+
+    const productName =
+      product.name ||
+      'Jewelry Product'
+
+    const categoryName =
+      product.category ||
+      'Jewelry'
+
+    const productDescription =
+      product.description ||
+      `${productName} from ${siteName}. Shop ${categoryName.toLowerCase()} in Kenya.`
+
+    const price =
+      Number(product.price || 0)
+
+    const canonicalUrl =
+      `${window.location.origin}${window.location.pathname}`
+
+
+    // ---------------------------------
+    // PAGE TITLE
+    // ---------------------------------
+
+    document.title =
+      `${productName} | ${siteName}`
+
+
+    // ---------------------------------
+    // HELPER: META TAG
+    // ---------------------------------
+
+    function setMeta(
+      attribute,
+      value,
+      content
+    ) {
+      if (!content) {
+        return
+      }
+
+      let element =
+        document.head.querySelector(
+          `meta[${attribute}="${value}"]`
+        )
+
+      if (!element) {
+        element =
+          document.createElement('meta')
+
+        element.setAttribute(
+          attribute,
+          value
+        )
+
+        document.head.appendChild(
+          element
+        )
+      }
+
+      element.setAttribute(
+        'content',
+        content
+      )
+
+      return element
+    }
+
+
+    // ---------------------------------
+    // META DESCRIPTION
+    // ---------------------------------
+
+    setMeta(
+      'name',
+      'description',
+      productDescription
+    )
+
+
+    // ---------------------------------
+    // OPEN GRAPH
+    // ---------------------------------
+
+    setMeta(
+      'property',
+      'og:title',
+      `${productName} | ${siteName}`
+    )
+
+    setMeta(
+      'property',
+      'og:description',
+      productDescription
+    )
+
+    setMeta(
+      'property',
+      'og:type',
+      'product'
+    )
+
+    setMeta(
+      'property',
+      'og:url',
+      canonicalUrl
+    )
+
+    if (product.image) {
+      setMeta(
+        'property',
+        'og:image',
+        product.image
+      )
+    }
+
+
+    // ---------------------------------
+    // TWITTER
+    // ---------------------------------
+
+    setMeta(
+      'name',
+      'twitter:card',
+      'summary_large_image'
+    )
+
+    setMeta(
+      'name',
+      'twitter:title',
+      `${productName} | ${siteName}`
+    )
+
+    setMeta(
+      'name',
+      'twitter:description',
+      productDescription
+    )
+
+    if (product.image) {
+      setMeta(
+        'name',
+        'twitter:image',
+        product.image
+      )
+    }
+
+
+    // ---------------------------------
+    // CANONICAL URL
+    // ---------------------------------
+
+    let canonical =
+      document.head.querySelector(
+        'link[rel="canonical"]'
+      )
+
+    if (!canonical) {
+      canonical =
+        document.createElement('link')
+
+      canonical.setAttribute(
+        'rel',
+        'canonical'
+      )
+
+      document.head.appendChild(
+        canonical
+      )
+    }
+
+    canonical.setAttribute(
+      'href',
+      canonicalUrl
+    )
+
+
+    // ---------------------------------
+    // PRODUCT AVAILABILITY
+    // ---------------------------------
+
+    const availability =
+      product.currentStock > 0
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock'
+
+
+    // ---------------------------------
+    // PRODUCT STRUCTURED DATA
+    // ---------------------------------
+
+    const productSchema = {
+      '@context':
+        'https://schema.org',
+
+      '@type':
+        'Product',
+
+      name:
+        productName,
+
+      description:
+        productDescription,
+
+      url:
+        canonicalUrl,
+
+      category:
+        categoryName,
+
+      brand: {
+        '@type':
+          'Brand',
+
+        name:
+          siteName,
+      },
+
+      offers: {
+        '@type':
+          'Offer',
+
+        price:
+          price,
+
+        priceCurrency:
+          'KES',
+
+        availability:
+          availability,
+
+        url:
+          canonicalUrl,
+
+        itemCondition:
+          'https://schema.org/NewCondition',
+      },
+    }
+
+
+    // ---------------------------------
+    // PRODUCT IMAGE
+    // ---------------------------------
+
+    if (product.image) {
+      productSchema.image =
+        [product.image]
+    }
+
+
+    // ---------------------------------
+    // SKU
+    // ---------------------------------
+
+    const sku =
+      product.product_code ||
+      product.productCode ||
+      product.code
+
+    if (sku) {
+      productSchema.sku =
+        String(sku)
+    }
+
+
+    // ---------------------------------
+    // INSERT JSON-LD
+    // ---------------------------------
+
+    let structuredData =
+      document.head.querySelector(
+        '#sixset-product-schema'
+      )
+
+    if (!structuredData) {
+      structuredData =
+        document.createElement('script')
+
+      structuredData.setAttribute(
+        'id',
+        'sixset-product-schema'
+      )
+
+      structuredData.setAttribute(
+        'type',
+        'application/ld+json'
+      )
+
+      document.head.appendChild(
+        structuredData
+      )
+    }
+
+    structuredData.textContent =
+      JSON.stringify(
+        productSchema
+      )
+
+
+    // ---------------------------------
+    // CLEANUP
+    // ---------------------------------
+
+    return () => {
+      const schema =
+        document.head.querySelector(
+          '#sixset-product-schema'
+        )
+
+      if (schema) {
+        schema.remove()
+      }
+    }
+  }, [product])
 
 
   // =================================
@@ -150,11 +484,6 @@ function ProductDetails({
   // =================================
   // QUANTITY LIMITS
   // =================================
-  //
-  // Same effective-min/max logic AllProducts.jsx uses — the
-  // limit is whichever is smaller: the admin's configured
-  // max, or what's actually in stock.
-  //
 
   const minimumQuantity =
     product.effectiveMinQuantity ??
@@ -168,27 +497,39 @@ function ProductDetails({
 
   const effectiveQuantity =
     Math.min(
-      Math.max(quantity, minimumQuantity),
+      Math.max(
+        quantity,
+        minimumQuantity
+      ),
       maximumQuantity
     )
+
 
   function increaseQuantity() {
     setQuantity((current) =>
       Math.min(
-        Math.max(current, minimumQuantity) + 1,
+        Math.max(
+          current,
+          minimumQuantity
+        ) + 1,
         maximumQuantity
       )
     )
   }
 
+
   function decreaseQuantity() {
     setQuantity((current) =>
       Math.max(
-        Math.max(current, minimumQuantity) - 1,
+        Math.max(
+          current,
+          minimumQuantity
+        ) - 1,
         minimumQuantity
       )
     )
   }
+
 
   // =================================
   // ADD TO CART
@@ -200,7 +541,10 @@ function ProductDetails({
     }
 
     const added =
-      addToCart(product, effectiveQuantity)
+      addToCart(
+        product,
+        effectiveQuantity
+      )
 
     if (added) {
       alert(
@@ -213,16 +557,6 @@ function ProductDetails({
   // =================================
   // CATEGORY URL
   // =================================
-
-  /*
-   * IMPORTANT:
-   *
-   * categorySlug comes directly from
-   * the Supabase categories table.
-   *
-   * We do NOT generate the URL from
-   * product.category.
-   */
 
   const categorySlug =
     product.categorySlug
@@ -453,7 +787,9 @@ function ProductDetails({
 
                   <button
                     type="button"
-                    onClick={decreaseQuantity}
+                    onClick={
+                      decreaseQuantity
+                    }
                     disabled={
                       effectiveQuantity <=
                       minimumQuantity
@@ -469,7 +805,9 @@ function ProductDetails({
 
                   <button
                     type="button"
-                    onClick={increaseQuantity}
+                    onClick={
+                      increaseQuantity
+                    }
                     disabled={
                       effectiveQuantity >=
                       maximumQuantity
@@ -499,7 +837,9 @@ function ProductDetails({
                 <button
                   type="button"
                   className="product-details-cart-button"
-                  onClick={handleAddToCart}
+                  onClick={
+                    handleAddToCart
+                  }
                 >
                   Add to Cart
                 </button>
