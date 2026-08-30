@@ -2,6 +2,8 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Main storefront -->
+
   <url>
     <loc>https://6set-jewelry.pages.dev/</loc>
   </url>
@@ -16,6 +18,24 @@
 
   <url>
     <loc>https://6set-jewelry.pages.dev/products</loc>
+  </url>
+
+  <!-- Jewelry categories -->
+
+  <url>
+    <loc>https://6set-jewelry.pages.dev/category/rings</loc>
+  </url>
+
+  <url>
+    <loc>https://6set-jewelry.pages.dev/category/bracelets</loc>
+  </url>
+
+  <url>
+    <loc>https://6set-jewelry.pages.dev/category/earrings</loc>
+  </url>
+
+  <url>
+    <loc>https://6set-jewelry.pages.dev/category/necklaces</loc>
   </url>
 
 </urlset>
