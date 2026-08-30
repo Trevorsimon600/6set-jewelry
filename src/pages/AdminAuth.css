@@ -113,6 +113,192 @@
 
 
 /* ============================================================
+   ADMIN PAGE (page wrapper)
+
+   The JSX renders "admin-page", not "admin-dashboard" above —
+   this carries the same page-level background/font tokens
+   .admin-dashboard was built with.
+   ============================================================ */
+
+.admin-page {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(118, 81, 154, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(196, 127, 157, 0.06),
+      transparent 25%
+    ),
+    var(--admin-bg);
+
+  color: var(--admin-text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* ============================================================
+   SHELL LAYOUT (sidebar + content)
+
+   Single column below 900px — the sidebar becomes a normal
+   top section there, and .admin-navigation inside it falls
+   back untouched to the horizontal scrollable bar it was
+   already built and already tuned for on phones.
+   ============================================================ */
+
+.admin-shell {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+
+  .admin-shell {
+    flex-direction: row;
+  }
+
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  padding: 22px 20px;
+
+  background: var(--admin-surface);
+
+  border-bottom: 1px solid var(--admin-border);
+}
+
+@media (min-width: 900px) {
+
+  .admin-sidebar {
+    width: 270px;
+    flex-shrink: 0;
+
+    padding: 32px 22px;
+
+    border-bottom: none;
+    border-right: 1px solid var(--admin-border);
+
+    position: sticky;
+    top: 0;
+
+    align-self: stretch;
+  }
+
+}
+
+
+/* ============================================================
+   SIDEBAR HEADER
+   ============================================================ */
+
+.admin-sidebar-header {
+  margin-bottom: 18px;
+}
+
+.admin-sidebar-header .section-label {
+  margin: 0 0 6px;
+
+  color: var(--admin-purple);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.admin-sidebar-header h1 {
+  margin: 0 0 4px;
+
+  color: var(--admin-text);
+
+  font-size: 1.5rem;
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+.admin-sidebar-header p {
+  margin: 0;
+
+  color: var(--admin-text-muted);
+
+  font-size: 0.85rem;
+}
+
+
+/* ============================================================
+   SIDEBAR NAVIGATION — DESKTOP / TABLET ONLY
+
+   Turns the existing horizontal pill bar into a true vertical
+   menu when it's nested inside the sidebar at 900px+. Below
+   900px this rule doesn't apply, so .admin-navigation renders
+   exactly as it already did (unchanged, and already mobile-
+   tuned further down this file).
+   ============================================================ */
+
+@media (min-width: 900px) {
+
+  .admin-sidebar .admin-navigation {
+    flex-direction: column;
+    align-items: stretch;
+
+    width: auto;
+
+    margin-bottom: 0;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+
+    overflow-x: visible;
+  }
+
+  .admin-sidebar .admin-navigation button,
+  .admin-sidebar .admin-navigation a {
+    justify-content: flex-start;
+
+    width: 100%;
+  }
+
+}
+
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.admin-content {
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* ============================================================
    ADMIN HEADER
    ============================================================ */
 
@@ -310,14 +496,20 @@
   display: grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(210px, 1fr)
-    );
+    repeat(6, 1fr);
 
   gap: 16px;
 
   margin-bottom: 24px;
+}
+
+@media (max-width: 1100px) {
+
+  .admin-dashboard-grid {
+    grid-template-columns:
+      repeat(4, 1fr);
+  }
+
 }
 
 
@@ -1574,10 +1766,6 @@
     padding: 15px;
 
     border-radius: 16px;
-  }
-
-  .admin-dashboard-grid {
-    grid-template-columns: 1fr;
   }
 
   .stat-card strong {

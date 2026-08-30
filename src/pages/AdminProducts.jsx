@@ -1334,6 +1334,7 @@ function AdminProducts({
               <button
                 type="button"
                 className="admin-modal-close"
+                aria-label="Close"
                 onClick={cancelEdit}
               >
                 ✕

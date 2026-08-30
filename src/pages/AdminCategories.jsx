@@ -1460,6 +1460,7 @@ function AdminCategories({
               <button
                 className="admin-modal-close"
                 type="button"
+                aria-label="Close"
                 onClick={cancelEdit}
               >
                 ✕

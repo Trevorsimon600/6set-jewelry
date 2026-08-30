@@ -122,14 +122,88 @@ function Header() {
 
 
   // =================================
+  // HIDE ON SCROLL DOWN, SHOW ON
+  // SCROLL UP
+  //
+  // Paused while the mobile menu is
+  // open — the header (and its
+  // hamburger toggle) should never
+  // disappear while that panel is on
+  // screen, or there'd be no way to
+  // close it.
+  //
+  // Always visible near the very top
+  // of the page, regardless of
+  // direction, so it doesn't flicker
+  // on tiny scroll jitters right at
+  // scrollY 0.
+  // =================================
+
+  const [headerHidden, setHeaderHidden] =
+    useState(false)
+
+  const lastScrollY = useRef(0)
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setHeaderHidden(false)
+      return
+    }
+
+    function handleScroll() {
+      const currentScrollY =
+        window.scrollY
+
+      const scrolledDown =
+        currentScrollY >
+        lastScrollY.current
+
+      const pastTopBuffer =
+        currentScrollY > 80
+
+      setHeaderHidden(
+        scrolledDown && pastTopBuffer
+      )
+
+      lastScrollY.current =
+        currentScrollY
+    }
+
+    window.addEventListener(
+      'scroll',
+      handleScroll,
+      { passive: true }
+    )
+
+    return () => {
+      window.removeEventListener(
+        'scroll',
+        handleScroll
+      )
+    }
+  }, [mobileMenuOpen])
+
+
+  // =================================
   // RENDER
   // =================================
 
   return (
-    <header className="site-header">
+    <header
+      className={`site-header${
+        headerHidden ? ' site-header-hidden' : ''
+      }`}
+    >
 
       {/* =================================
-          LOGO
+          LOGO + WORDMARK
+
+          Keeps the existing circular
+          photo logo, paired with a
+          visible text wordmark next to
+          it (previously text-only via
+          aria-label, not actually shown
+          on screen).
       ================================= */}
 
       <Link
@@ -142,6 +216,10 @@ function Header() {
           src={logoUrl}
           alt={shopName}
         />
+
+        <span className="brand-name">
+          {shopName}
+        </span>
 
       </Link>
 

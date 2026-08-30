@@ -898,7 +898,7 @@ function OrderConfirmation() {
 
                   <span>
 
-                    {deliveryCost === null
+                    {!deliveryCost
 
                       ? 'To be arranged'
 

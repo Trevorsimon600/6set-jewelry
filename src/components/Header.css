@@ -20,19 +20,39 @@
 
   border-bottom: 1px solid #f0e4f2;
 
-  position: relative;
+  position: sticky;
+  top: 0;
 
   z-index: 100;
+
+  transition: transform 0.3s ease;
 }
 
 
 /* =================================
-   LOGO
+   HIDE ON SCROLL DOWN
+
+   Toggled in JS based on scroll
+   direction — see Header.jsx. Slides
+   fully off-screen rather than fading,
+   so it never intercepts taps while
+   invisible.
+================================= */
+
+.site-header-hidden {
+  transform: translateY(-100%);
+}
+
+
+/* =================================
+   LOGO + WORDMARK
 ================================= */
 
 .brand {
   display: flex;
   align-items: center;
+
+  gap: 10px;
 
   flex-shrink: 0;
 
@@ -40,8 +60,8 @@
 }
 
 .brand img {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
 
   object-fit: cover;
 
@@ -49,10 +69,29 @@
 
   display: block;
 
+  flex-shrink: 0;
+
   border: 2px solid #ead6ed;
 
   box-shadow:
     0 5px 15px rgba(80, 40, 90, 0.10);
+}
+
+.brand-name {
+  color: #38263f;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 1.15rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.01em;
+
+  white-space: nowrap;
 }
 
 
@@ -669,6 +708,11 @@
   .brand img {
     width: 38px;
     height: 38px;
+  }
+
+
+  .brand-name {
+    font-size: 0.95rem;
   }
 
 

@@ -956,6 +956,13 @@ strong {
   }
 
 
+  .receipt-info-row span,
+  .receipt-info-row strong {
+
+    min-width: 0;
+  }
+
+
   .receipt-info-row strong {
 
     max-width: 55%;
@@ -965,6 +972,12 @@ strong {
   .receipt-item {
 
     gap: 12px;
+  }
+
+
+  .receipt-item-details {
+
+    min-width: 0;
   }
 
 
@@ -986,35 +999,139 @@ strong {
   }
 
 
+  /* =================================
+     ACTION BUTTONS — MINIMIZED
+
+     Two-up instead of full-width
+     stacked, smaller padding/font.
+     Desktop (above this breakpoint)
+     is untouched.
+  ================================= */
+
   .receipt-actions {
 
-    flex-direction: column;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
   }
 
 
   .print-receipt-button,
   .receipt-actions .call-button {
 
-    width: 100%;
+    flex: 1 1 calc(50% - 5px);
 
     min-width: 0;
+
+    min-height: 42px;
+
+    padding: 10px 14px;
+
+    font-size: 0.82rem;
   }
 
 
   .confirmation-actions {
 
-    flex-direction: column;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
   }
 
 
   .shop-again-button,
   .home-button {
 
-    width: 100%;
+    flex: 1 1 calc(50% - 5px);
+
+    width: auto;
 
     box-sizing: border-box;
 
+    padding: 10px 14px;
+
+    font-size: 0.82rem;
+
     text-align: center;
+  }
+
+}
+
+
+/* =================================
+   VERY SMALL PHONES
+
+   Extra shrink room specifically for
+   the receipt card, on top of the
+   600px rules above.
+================================= */
+
+@media (max-width: 380px) {
+
+  .confirmation-card {
+
+    padding: 30px 12px;
+  }
+
+
+  .receipt-header {
+
+    padding: 22px 14px 18px;
+  }
+
+
+  .receipt-header h2 {
+
+    font-size: 1.6rem;
+  }
+
+
+  .receipt-section {
+
+    padding: 18px 14px;
+  }
+
+
+  .receipt-info-row {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 4px;
+  }
+
+
+  .receipt-info-row strong {
+
+    max-width: 100%;
+
+    text-align: left;
+  }
+
+
+  .receipt-item {
+
+    flex-wrap: wrap;
+  }
+
+
+  .receipt-footer {
+
+    padding: 20px 14px;
+  }
+
+
+  .print-receipt-button,
+  .receipt-actions .call-button,
+  .shop-again-button,
+  .home-button {
+
+    flex: 1 1 100%;
   }
 
 }

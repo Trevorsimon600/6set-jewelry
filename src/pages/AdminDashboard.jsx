@@ -62,6 +62,7 @@ function AdminDashboard() {
 
   const {
     user,
+    signOut,
     loading: authLoading,
   } = useAuth()
 
@@ -819,6 +820,24 @@ function AdminDashboard() {
 
 
   /* ==========================================================
+     LOGOUT
+  ========================================================== */
+
+  async function handleLogout() {
+    try {
+      await signOut()
+
+      navigate('/admin/login', { replace: true })
+    } catch (error) {
+      console.error(
+        'Logout failed:',
+        error
+      )
+    }
+  }
+
+
+  /* ==========================================================
      LOADING
   ========================================================== */
 
@@ -918,6 +937,9 @@ function AdminDashboard() {
             style={{
               marginTop: 'auto',
               paddingTop: '2rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
             }}
           >
 
@@ -929,6 +951,14 @@ function AdminDashboard() {
               }
             >
               View Store
+            </button>
+
+            <button
+              type="button"
+              className="admin-action-button secondary"
+              onClick={handleLogout}
+            >
+              Logout
             </button>
 
           </div>
