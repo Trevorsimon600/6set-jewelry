@@ -2,5 +2,9 @@ User-agent: *
 Allow: /
 
 Disallow: /admin/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /payment
+Disallow: /order-confirmation
 
 Sitemap: https://6set-jewelry.pages.dev/sitemap.xml
